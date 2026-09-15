@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VeroCleaning — Куди звертатись</title>
+<style>
+  :root{
+    --bg:#F5F5F7; --card:#FFFFFF; --ink:#1D1D1F; --sub:#6E6E73;
+    --line:rgba(60,60,67,.12); --accent:#0A7548; --accent-soft:#E4F5EC;
+    --blue:#007AFF; --pink:#FF2D55; --amber:#FF9F0A; --amber-soft:#FFF3DE;
+    --r-lg:1.25rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.45;
+    -webkit-font-smoothing:antialiased; padding-bottom:3rem;
+  }
+  .page{max-width:26rem; margin:0 auto; padding:0 1rem}
+
+  .hero{padding:2.25rem 1.25rem 1.25rem; text-align:center}
+  .hero .kicker{font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:.5rem}
+  .hero h1{font-size:1.75rem; font-weight:700; letter-spacing:-.02em; margin-bottom:.5rem}
+  .hero p{font-size:.9375rem; color:var(--sub); max-width:22rem; margin:0 auto}
+
+  /* ===== FLOW BANNER ===== */
+  .flow{display:flex; align-items:center; gap:.4rem; background:var(--card); border-radius:var(--r-lg);
+    padding:1rem .9rem; margin-bottom:1.4rem; box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .flow .fs{flex:1; text-align:center}
+  .flow .fs .n{width:1.7rem; height:1.7rem; border-radius:50%; background:var(--accent); color:#fff;
+    font-size:.75rem; font-weight:700; display:grid; place-items:center; margin:0 auto .3rem}
+  .flow .fs .l{font-size:.6875rem; color:var(--sub); line-height:1.25}
+  .flow .arrow{font-size:.9rem; color:var(--line); flex:none}
+
+  .slabel{font-size:.8125rem; font-weight:600; color:var(--sub); text-transform:uppercase;
+    letter-spacing:.05em; margin:0 .2rem .6rem}
+
+  /* ===== ACCORDION ===== */
+  .acc{background:var(--card); border-radius:var(--r-lg); margin-bottom:.6rem; overflow:hidden;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .acc summary{list-style:none; cursor:pointer; padding:.95rem 1rem; display:flex; align-items:center;
+    gap:.75rem}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc .ic{width:2.2rem; height:2.2rem; border-radius:.6rem; display:grid; place-items:center;
+    font-size:1.1rem; flex:none; background:var(--accent-soft)}
+  .acc .head{flex:1; min-width:0}
+  .acc .cat{font-size:.9375rem; font-weight:600; letter-spacing:-.005em}
+  .acc .file{font-size:.75rem; color:var(--accent); font-family:ui-monospace,monospace; margin-top:.1rem}
+  .acc .chev{font-size:.75rem; color:var(--sub); flex:none; transition:transform .2s}
+  .acc[open] .chev{transform:rotate(90deg)}
+  .acc .inner{padding:0 1.1rem 1.1rem}
+  .acc .rule{background:var(--bg); border-radius:.7rem; padding:.75rem .85rem; margin-bottom:.6rem}
+  .acc .rule .rt{font-size:.6875rem; font-weight:700; color:var(--accent); text-transform:uppercase;
+    letter-spacing:.04em; margin-bottom:.25rem}
+  .acc .rule p{font-size:.8438rem; line-height:1.5}
+  .who{display:flex; gap:.4rem; align-items:center; font-size:.75rem; color:var(--sub)}
+  .who .tag{font-size:.6875rem; font-weight:600; color:#fff; background:var(--accent);
+    padding:.15rem .5rem; border-radius:.4rem}
+  .who .tag.client{background:var(--blue)}
+  .who .tag.both{background:var(--pink)}
+
+  /* ===== UNKNOWN / FORM ===== */
+  .newcase{background:linear-gradient(135deg,var(--amber-soft),#FFF9EC); border-radius:var(--r-lg);
+    padding:1.15rem; margin-top:1.5rem; border:1px solid rgba(156,101,0,.15)}
+  .newcase .nt{font-size:.9375rem; font-weight:700; margin-bottom:.4rem; display:flex; gap:.4rem; align-items:center}
+  .newcase p{font-size:.8438rem; color:var(--sub); line-height:1.5; margin-bottom:.8rem}
+  .form{background:var(--card); border-radius:.85rem; padding:.9rem 1rem; font-size:.8125rem; line-height:1.9;
+    font-family:ui-monospace,monospace; color:var(--ink)}
+  .form .fl{color:var(--sub)}
+
+  footer{text-align:center; font-size:.75rem; color:var(--sub); padding:2rem 1.5rem 0; line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="kicker">🧭 Маршрут рішень</div>
+  <h1>Куди звертатись</h1>
+  <p>З'явилась ідея чи правка? Спочатку визнач тип — тоді відкриється, який файл каже «можна» чи «ні», і хто вирішує.</p>
+  <p style="margin-top:.75rem"><a href="playbook.html" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.875rem">Ролі, процес, тиждень 1 →</a></p>
+</div>
+
+<div class="page">
+
+  <div class="flow">
+    <div class="fs"><div class="n">1</div><div class="l">Яка це категорія?</div></div>
+    <span class="arrow">→</span>
+    <div class="fs"><div class="n">2</div><div class="l">Відкрий файл</div></div>
+    <span class="arrow">→</span>
+    <div class="fs"><div class="n">3</div><div class="l">Пройшло правило?</div></div>
+  </div>
+
+  <div class="slabel">Обери категорію</div>
+
+  <details class="acc" open>
+    <summary>
+      <div class="ic">🎨</div>
+      <div class="head"><div class="cat">Дизайн-токени</div><div class="file">docs/design-system-v3.md</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Кольори й шрифт уже зафіксовані — не обираються заново. Нова ідея (акцентний колір, новий елемент) перевіряється інструментом <code>design-check.html</code>: проходить контраст 4.5:1 на всіх фонах — можна, ні — тільки для заливок.</p></div>
+      <div class="who">Джерело: <span class="tag">Олександр</span> веде файл · перевіряє: <span class="tag client">Толік</span></div>
+      <p style="margin-top:.6rem"><a href="docs/design-system-v3.md" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Відкрити скіл →</a> &middot; <a href="design-check.html" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Перевірити ідею →</a></p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">📐</div>
+      <div class="head"><div class="cat">Порядок і вигляд блоків</div><div class="file">docs/SPEC-home.md</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Блок уже є в SPEC цієї сторінки — розпоряджайся вільно. Блоку немає — це заявка на новий цикл, дивись розділ «Щось нове» внизу.</p></div>
+      <div class="who">Вирішує: <span class="tag client">Толік</span>, у межах SPEC</div>
+      <p style="margin-top:.6rem"><a href="docs/SPEC-home.md" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Відкрити SPEC →</a></p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">📝</div>
+      <div class="head"><div class="cat">Текст і його довжина</div><div class="file">docs/content-contract-money-page.md</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Ліміти символів і кількості елементів виміряні на реальному еталоні. «Трохи більше» ламає верстку — це не гнучке число.</p></div>
+      <div class="who">Пише: <span class="tag">Олександр</span>, у межах контракту</div>
+      <p style="margin-top:.6rem"><a href="docs/content-contract-money-page.md" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Відкрити контракт →</a></p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">💰</div>
+      <div class="head"><div class="cat">Ціна чи факт про бізнес</div><div class="file">docs/vero-facts.json</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Єдине джерело правди. Якщо цифра десь на сайті відрізняється — файл правий, сторінку правимо, не навпаки.</p></div>
+      <div class="who"><span class="tag client">Толік</span> дає факт → <span class="tag">Олександр</span> вносить у файл</div>
+      <p style="margin-top:.6rem"><a href="docs/vero-facts.json" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Відкрити факти →</a></p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">🔍</div>
+      <div class="head"><div class="cat">Чи потрібен цей контент узагалі</div><div class="file">vero-search-demand-analysis.html</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Контент існує, бо закриває конкретний пошуковий запит. Нова ідея звіряється з дослідженням, не з відчуттям «здається, це важливо».</p></div>
+      <div class="who">Звіряє: <span class="tag">Олександр</span></div>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">⚙️</div>
+      <div class="head"><div class="cat">Технічна реалізація</div><div class="file">аудит файлів проєкту</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Здійсненність і вартість у часі оцінює той, хто кодує. Не предмет голосування.</p></div>
+      <div class="who">Вирішує: <span class="tag">Олександр</span></div>
+    </div>
+  </details>
+
+  <div class="slabel" style="margin-top:1.5rem">Живі файли</div>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">🖥</div>
+      <div class="head"><div class="cat">Макет головної</div><div class="file">mockup/</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Що це</div>
+        <p>Робочий прототип головної сторінки — відкривається як справжній сайт. Структурний і дизайнерський хребет, по якому робимо решту сторінок.</p></div>
+      <div class="who">Робить: <span class="tag client">Толік</span> · приймає: <span class="tag">Олександр</span></div>
+      <p style="margin-top:.6rem"><a href="mockup/" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Відкрити макет →</a></p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary>
+      <div class="ic">📋</div>
+      <div class="head"><div class="cat">Що доробити в макеті</div><div class="file">docs/DESIGN-TODO-for-client.md</div></div>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="inner">
+      <div class="rule"><div class="rt">Правило</div>
+        <p>Чотири правки по тексту й структурі. Технічна частина (мета-теги, структуровані дані) — окремо, від замовника не потрібна.</p></div>
+      <div class="who">Виконує: <span class="tag client">Толік</span></div>
+      <p style="margin-top:.6rem"><a href="docs/DESIGN-TODO-for-client.md" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.8125rem">Відкрити список →</a></p>
+    </div>
+  </details>
+
+  <div class="newcase">
+    <div class="nt">❓ Не підійшло жодне з категорій вище</div>
+    <p>Це і є сигнал: якщо жоден файл вище не описує ідею — вона не «дрібна правка», а новий цикл роботи. Заповни й надішли письмово, не дзвінком.</p>
+    <div class="form">
+<span class="fl">Що змінити:</span><br>
+<span class="fl">Навіщо:</span><br>
+<span class="fl">Що це зачіпає:</span><br>
+<span class="fl">У межах системи? Так / Ні</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>VeroCleaning · маршрут рішень<br>частина Playbook співпраці</footer>
+
+</body>
+</html>
