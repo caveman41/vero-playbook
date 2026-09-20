@@ -1,0 +1,410 @@
+{
+  "_meta": {
+    "purpose": "Єдине джерело істини для цін, контактів і фактів на всі сторінки VeroCleaning. Контент і макети посилаються сюди, а не вигадують числа заново.",
+    "version": "2.0",
+    "created": "2026-09-02",
+    "updated": "2026-09-15",
+    "canonical_price_source": "Повна логіка калькулятора /book, передана Толіком 15.09.2026. Канонічні таблиці перевірені Python-обчисленням проти нової формули — збігаються з v1.0 до долара.",
+    "v2_changelog": [
+      "Додано Крок 5: Extras (додаються ПІСЛЯ множення, коефіцієнт на них не діє)",
+      "Додано Крок 6: Discounts (Welcome -$20, Recurring -15%)",
+      "Додано обмеження доступності кімнат за типом житла (Den тільки Condo, Half Bath тільки Town/House, Basement тільки Town/House)",
+      "ЗАКРИТО конфлікт specialty_no_formula — ціни Carpet і Steam тепер відомі",
+      "Модель сайту: головна = Residential, Commercial = окрема сторінка з перемикачем"
+    ]
+  },
+  "business": {
+    "name": "VeroCleaning",
+    "phone": "(416) 206-4408",
+    "phone_href": "tel:+14162064408",
+    "whatsapp": "https://wa.me/14162064408",
+    "address": "10 Shallmar Blvd, Toronto, ON",
+    "hours": "Mon–Sun · 10am – 5pm"
+  },
+  "site_model": {
+    "_meta": "Чинна модель, підтверджена 15.09.2026. Збігається з контент-стратегією v2.3.",
+    "residential": {
+      "url": "/",
+      "role": "Головна сторінка = residential. Окремої сторінки /residential-cleaning-toronto немає, вона віддає 301 на /.",
+      "switch": "На головній є перемикач на Commercial-сторінку"
+    },
+    "commercial": {
+      "url": "/commercial-cleaning-toronto",
+      "role": "Окрема повноцінна сторінка, не таб і не версія головної",
+      "pricing_model": "quote-based, не фікс-ціна — комерційні обсяги рахуються індивідуально"
+    },
+    "deprecated": "Модель «одна сторінка з res/com тумблером усередині» скасована. Тумблер тепер маршрутизатор між двома URL, не перемикач контенту на одному."
+  },
+  "pricing": {
+    "formula": "Total = round((Base + Rooms + Basement) × Multiplier) + Extras − Discounts",
+    "formula_notes": [
+      "Extras додаються ПІСЛЯ множення — коефіцієнт типу прибирання на них НЕ діє",
+      "Basement входить у суму ДО множення, нарівні з кімнатами основного поверху",
+      "Округлення до цілого долара застосовується до результату множення, до додавання Extras"
+    ],
+    "model_history": {
+      "2026-08-15": "Виправлено баг: бейсмент-надбавки не множились на коефіцієнт послуги. Ставки не змінились, змінився порядок дій.",
+      "2026-09-15": "Передано повну логіку з Extras і Discounts. Канонічні таблиці перевірені — не змінились."
+    },
+    "step_1_base": {
+      "condo": 80,
+      "townhouse": 100,
+      "house": 110
+    },
+    "step_2_rooms": {
+      "_note": "Додаються до Base, множаться на коефіцієнт",
+      "bedroom": {
+        "price": 30,
+        "available_for": [
+          "condo",
+          "townhouse",
+          "house"
+        ]
+      },
+      "bathroom": {
+        "price": 40,
+        "available_for": [
+          "condo",
+          "townhouse",
+          "house"
+        ],
+        "definition": "з душем або ванною"
+      },
+      "den_or_office": {
+        "price": 20,
+        "available_for": [
+          "condo"
+        ],
+        "⚠": "ТІЛЬКИ для Condo"
+      },
+      "half_bath": {
+        "price": 20,
+        "available_for": [
+          "townhouse",
+          "house"
+        ],
+        "definition": "тільки туалет і раковина",
+        "⚠": "ТІЛЬКИ для Townhouse і House"
+      }
+    },
+    "step_3_basement": {
+      "_note": "Доступний ТІЛЬКИ для Townhouse і House. Додається до суми ДО множення.",
+      "available_for": [
+        "townhouse",
+        "house"
+      ],
+      "basement_access": {
+        "price": 60,
+        "label": "Yes, add it — базове прибирання підвалу"
+      },
+      "basement_bedroom": {
+        "price": 30
+      },
+      "basement_bathroom": {
+        "price": 40,
+        "definition": "з душем або ванною"
+      },
+      "basement_half_bath": {
+        "price": 20
+      },
+      "worked_example": "Підвал + 1 спальня в ньому = $60 + $30 = $90, які входять у суму перед множенням"
+    },
+    "step_4_multipliers": {
+      "regular": 1,
+      "deep": 1.5,
+      "moveinout": 1.8,
+      "postreno": 2.2
+    },
+    "step_5_extras": {
+      "_note": "Додаються в кінці. Множник НЕ діє. Фіксовані SKU-ціни.",
+      "appliances": {
+        "fridge": 35,
+        "oven": 35,
+        "range_hood": 35,
+        "coffee_maker": 29,
+        "microwave": 19,
+        "small_appliances": 19,
+        "dishwasher": 19,
+        "washer": 19,
+        "dryer": 19
+      },
+      "hourly_zones": {
+        "_note": "$30 за кожні 30 хвилин",
+        "rate_per_30min": 30,
+        "items": [
+          "cabinets",
+          "windows",
+          "walls",
+          "floor_steam",
+          "organizing"
+        ]
+      },
+      "steam_and_extraction": {
+        "carpet_rugs_per_zone": 69,
+        "bathroom_steam": 30
+      },
+      "mattress_per_side": {
+        "twin": 60,
+        "queen": 90,
+        "king": 120
+      },
+      "upholstery": {
+        "chair": 49,
+        "seater_2": 129,
+        "seater_3": 149,
+        "seater_4_plus": 169,
+        "l_shape": 189,
+        "u_shape": 209
+      },
+      "household": {
+        "laundry_per_load": 29,
+        "linen_change_per_bed": 9
+      }
+    },
+    "step_6_discounts": {
+      "_note": "Застосовуються у строгій послідовності після Extras",
+      "welcome_offer": {
+        "amount": 20,
+        "type": "flat",
+        "condition": "введений валідний номер телефону",
+        "label": "Welcome Offer"
+      },
+      "recurring": {
+        "amount": 0.15,
+        "type": "percent",
+        "condition": "Weekly або Bi-weekly графік",
+        "label": "Recurring discount"
+      },
+      "⚠_ORDER_AMBIGUITY": {
+        "question": "Чи рахується 15% від суми ПІСЛЯ вирахування $20, чи до нього?",
+        "worked_example_condo_deep_180": {
+          "welcome_then_recurring": 136,
+          "recurring_then_welcome": 133,
+          "delta": 3
+        },
+        "status": "Формулювання «у строгій послідовності» вказує на перший варіант (Welcome → Recurring), але прямо це не сказано. Різниця $3 на типовому чеку. Потребує підтвердження Толіка перед тим, як публікувати приклади розрахунку в контенті.",
+        "impact": "Не блокує контент, поки в текстах не наводиться приклад із ДВОМА знижками одночасно."
+      }
+    },
+    "canonical_table_studio_1bath": {
+      "_note": "0 спалень, 1 ванна. Офіційна конфігурація героя головної. Перевірено проти формули v2.0 — не змінилось.",
+      "condo": {
+        "regular": 120,
+        "deep": 180,
+        "moveinout": 216,
+        "postreno": 264
+      }
+    },
+    "canonical_table_default_rooms": {
+      "_note": "Дефолтні кімнати калькулятора. Перевірено проти формули v2.0 — не змінилось.",
+      "condo": {
+        "regular": 120,
+        "deep": 180,
+        "moveinout": 216,
+        "postreno": 264
+      },
+      "townhouse": {
+        "regular": 170,
+        "deep": 255,
+        "moveinout": 306,
+        "postreno": 374
+      },
+      "house": {
+        "regular": 180,
+        "deep": 270,
+        "moveinout": 324,
+        "postreno": 396
+      }
+    },
+    "✅_RESOLVED_specialty_prices": {
+      "_was": "specialty_no_formula — Carpet і Steam не мали ціни, стояли плейсхолдери $119/$89",
+      "carpet_rug": {
+        "price": 69,
+        "unit": "за зону",
+        "source": "логіка калькулятора від 15.09.2026"
+      },
+      "steam_bathroom": {
+        "price": 30,
+        "unit": "за ванну кімнату"
+      },
+      "floor_steam": {
+        "price": 30,
+        "unit": "за 30 хв",
+        "note": "почасова зона, не фікс"
+      },
+      "⚠_content_action": "Контент-стратегія v2.3 і сторінки послуг досі пишуть «Carpet від $89». Це застаріло — коректно $69 за зону. Виправити при написанні сторінки /carpet-cleaning-toronto."
+    },
+    "⚠_CONFLICT_UNRESOLVED": {
+      "found_in": "vero-deep-cleaning-CONTENT-MOCKUP.html (позначений у проєкті як «золотий еталон»)",
+      "description": "Цифри в контенті golden-standard мокапу не збігаються з жодною конфігурацією формули.",
+      "mockup_states": {
+        "regular_generic": 119,
+        "deep_1bed_condo": 189,
+        "deep_townhouse": 229,
+        "deep_house": 279,
+        "moveinout_generic": 229
+      },
+      "formula_v2_gives": {
+        "condo_studio_deep": 180,
+        "townhouse_default_deep": 255,
+        "house_default_deep": 270
+      },
+      "status_2026-09-15": "Формула v2.0 НЕ змінила канонічні таблиці — отже конфлікт із мокапом лишається точно таким, як був. Нова інформація його не закриває.",
+      "action_required": "Мокап писався між старою ($150) і новою ($180) генерацією цін. Усі ціни з нього підлягають заміні на actuals із canonical_table_default_rooms. Жодна цифра з golden-standard мокапу не копіюється в новий контент."
+    }
+  },
+  "site_wide_price_staleness": {
+    "_meta": "Підтверджено в book-v2_DEPLOY-book-v2.md §3",
+    "confirmed_stale_pages": [
+      "меню",
+      "/pricing (пост 3505, ще на Kadence, не мігрована)",
+      "сторінки послуг"
+    ],
+    "old_value_condo_deep": 150,
+    "new_value_condo_deep": 180,
+    "note": "Оновлено тільки /book, решта сайту досі показує стару ціну"
+  },
+  "add_ons_legacy_notes": {
+    "_meta": "Правки Толіка від 15.08.2026 — звірені з новим прайсом 15.09",
+    "organizing": {
+      "label": "Organizing",
+      "spelling_note": "Американський варіант через 'z'",
+      "status_2026-09-15": "У новій логіці Organizing — почасова зона ($30 за 30 хв), не фікс $30 за послугу. Стара позначка 'price: 30' стосувалась іншої моделі.",
+      "price_history": {
+        "was": 35,
+        "then": 30,
+        "now": "почасово $30/30хв"
+      }
+    },
+    "linen_change": {
+      "label": "Linen Change",
+      "renamed_from": "Bed making",
+      "price": 9,
+      "unit": "за ліжко",
+      "✅": "Ціна закрита новим прайсом — раніше була невідома"
+    }
+  },
+  "service_areas": {
+    "_meta": "Оновлено 15.08.2026. Було 18, стало 20 — додано King і Bradford.",
+    "total": 20,
+    "core": "Toronto",
+    "regions": {
+      "Peel · Halton": [
+        "Mississauga",
+        "Brampton",
+        "Oakville",
+        "Burlington",
+        "Milton"
+      ],
+      "York Region": [
+        "Vaughan",
+        "Markham",
+        "Richmond Hill",
+        "Aurora",
+        "Newmarket",
+        "Stouffville",
+        "King"
+      ],
+      "Durham": [
+        "Whitby",
+        "Pickering",
+        "Ajax"
+      ],
+      "Toronto proper (districts, not separate cities)": [
+        "Scarborough",
+        "North York",
+        "Etobicoke"
+      ],
+      "⚠_uncategorized": {
+        "Bradford": "Bradford West Gwillimbury — Simcoe County, за межами чотирьох регіональних муніципалітетів GTA. На макеті головної реалізовано як окремий чип 'extended area' без регіонального контуру."
+      }
+    },
+    "display_status_2026-09-15": "✅ Реалізовано на макеті головної: 20 чипів, згруповані за 4 регіонами, Bradford окремо пунктирним чипом. Плейсхолдер 'Map · Toronto & the GTA' замінено."
+  },
+  "services": {
+    "regular": {
+      "label": "Regular Cleaning",
+      "category": "Types",
+      "url": "/regular-cleaning-toronto"
+    },
+    "deep": {
+      "label": "Deep Cleaning",
+      "category": "Types",
+      "url": "/deep-cleaning-toronto"
+    },
+    "moveinout": {
+      "label": "Move-In / Out",
+      "category": "Types",
+      "url": "/move-out-cleaning-toronto"
+    },
+    "postreno": {
+      "label": "Post-Renovation",
+      "category": "Types",
+      "url": "/post-renovation-cleaning"
+    },
+    "carpet": {
+      "label": "Carpet / Rug Cleaning",
+      "category": "Specialty",
+      "price_per_zone": 69
+    },
+    "steam": {
+      "label": "Steam Cleaning",
+      "category": "Specialty",
+      "note": "метод, не послуга — bathroom steam $30, floor steam почасово"
+    },
+    "window": {
+      "label": "Window Cleaning",
+      "category": "Specialty",
+      "note": "почасова зона; exterior-інтент належить спеціалістам"
+    }
+  },
+  "design_system": {
+    "_meta": "Стан на 15.09.2026 — v3.0, база файл замовника design-system.html",
+    "version": "3.0",
+    "tokens": {
+      "ink": "#000500",
+      "muted": "#4E5C50",
+      "emerald": "#00B34F",
+      "emerald_press": "#009B44",
+      "sand": "#F8F4EA",
+      "sand_deep": "#E4DFD3",
+      "white": "#FFFFFF",
+      "mint": "#E4F6E6",
+      "line": "#DDD6C7",
+      "tints": {
+        "sky": "#E3F3FD",
+        "mint": "#E4F6E6",
+        "rose": "#FCE8E9",
+        "butter": "#FBF5DC"
+      }
+    },
+    "typography": {
+      "headings": "Nunito 500 (700 тільки для рідких акцентів)",
+      "body": "Inter 400",
+      "ui_and_numbers": "Inter 500, tabular-nums",
+      "rule": "Будь-яке число — завжди Inter, ніколи Nunito"
+    },
+    "color_roles": {
+      "emerald": "заливка великих форм — ніколи текст (2.78 на білому, провалює поріг)",
+      "emerald_press": "hover/active кнопки — теж заливка",
+      "ink": "весь текст, включно з текстом на зеленій кнопці"
+    },
+    "⚠_deprecated": "Старі згадки «Nunito 800 + Roboto» і «Manrope» у контент-стратегії застаріли — чинна пара Inter + Nunito"
+  },
+  "trust_signals": {
+    "allowed": [
+      "Fixed upfront price",
+      "Pay after the clean",
+      "24-hour guarantee",
+      "Vetted & insured",
+      "Background-checked",
+      "Online booking in 60 seconds"
+    ],
+    "forbidden": [
+      "будь-який % без джерела",
+      "конкретні години без діапазону",
+      "AggregateRating schema",
+      "фейкові відгуки"
+    ]
+  }
+}
