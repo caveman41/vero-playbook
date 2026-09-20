@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VeroCleaning — робоча база проєкту</title>
+<style>
+  :root{
+    --bg:#F5F5F7; --card:#FFFFFF; --ink:#1D1D1F; --sub:#6E6E73;
+    --line:rgba(60,60,67,.12); --accent:#0A7548; --accent-soft:#E4F6E6;
+    --blue:#007AFF; --blue-soft:#E3F1FF; --amber:#FF9F0A; --amber-soft:#FFF3DE;
+    --r-lg:1.25rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.45;
+    -webkit-font-smoothing:antialiased; padding-bottom:3rem;
+  }
+  .page{max-width:28rem; margin:0 auto; padding:0 1rem}
+
+  .hero{padding:2.75rem 1.25rem 1.5rem; text-align:center}
+  .hero .kicker{font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:.5rem}
+  .hero h1{font-size:2rem; font-weight:700; letter-spacing:-.02em; margin-bottom:.5rem}
+  .hero p{font-size:.9375rem; color:var(--sub); max-width:24rem; margin:0 auto}
+
+  .big{display:block; background:var(--card); border-radius:var(--r-lg); padding:1.4rem 1.3rem;
+    margin-bottom:.85rem; box-shadow:0 1px 3px rgba(0,0,0,.06); text-decoration:none; color:inherit;
+    border-left:4px solid var(--accent)}
+  .big.b2{border-left-color:var(--blue)}
+  .big:active{transform:scale(.99)}
+  .big .bh{display:flex; align-items:center; gap:.7rem; margin-bottom:.5rem}
+  .big .bi{width:2.5rem; height:2.5rem; border-radius:.7rem; display:grid; place-items:center;
+    font-size:1.3rem; background:var(--accent-soft); flex:none}
+  .big.b2 .bi{background:var(--blue-soft)}
+  .big .bt{font-size:1.125rem; font-weight:700; letter-spacing:-.01em}
+  .big .bs{font-size:.75rem; color:var(--sub); margin-top:.1rem}
+  .big p{font-size:.875rem; color:var(--sub); line-height:1.5}
+  .big .go{display:inline-block; margin-top:.7rem; font-size:.8125rem; font-weight:600; color:var(--accent)}
+  .big.b2 .go{color:var(--blue)}
+
+  .slabel{font-size:.75rem; font-weight:600; color:var(--sub); text-transform:uppercase;
+    letter-spacing:.06em; margin:1.75rem .2rem .55rem}
+
+  .group{background:var(--card); border-radius:var(--r-lg); overflow:hidden; margin-bottom:.5rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .row{display:flex; gap:.75rem; align-items:center; padding:.85rem 1rem; border-top:1px solid var(--line);
+    text-decoration:none; color:inherit}
+  .row:first-child{border-top:0}
+  .row:active{background:var(--bg)}
+  .ic{width:2.1rem; height:2.1rem; border-radius:.6rem; display:grid; place-items:center;
+    font-size:1.05rem; flex:none; background:var(--accent-soft)}
+  .rb{flex:1; min-width:0}
+  .t{font-size:.9375rem; font-weight:600}
+  .d{font-size:.8125rem; color:var(--sub); margin-top:.1rem; line-height:1.35}
+  .chev{color:var(--sub); font-size:.8rem; flex:none}
+
+  .flow{background:var(--card); border-radius:var(--r-lg); padding:1.1rem 1rem; margin-top:1.75rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .flow .ft{font-size:.6875rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--sub); margin-bottom:.75rem; text-align:center}
+  .frow{display:flex; align-items:center; gap:.25rem}
+  .fs{flex:1; text-align:center}
+  .fs .n{width:1.5rem; height:1.5rem; border-radius:50%; background:var(--accent); color:#fff;
+    font-size:.6875rem; font-weight:700; display:grid; place-items:center; margin:0 auto .3rem}
+  .fs .l{font-size:.5625rem; color:var(--sub); line-height:1.2}
+  .arrow{font-size:.7rem; color:var(--line); flex:none}
+
+  .note{background:linear-gradient(135deg,var(--amber-soft),#FFF9EC); border-radius:var(--r-lg);
+    padding:1.1rem 1.15rem; margin-top:1.5rem; border:1px solid rgba(156,101,0,.15)}
+  .note .nt{font-size:.9375rem; font-weight:700; margin-bottom:.5rem}
+  .note p{font-size:.8438rem; color:var(--sub); line-height:1.55}
+  .note b{color:var(--ink); font-weight:600}
+
+  footer{text-align:center; font-size:.75rem; color:var(--sub); padding:2rem 1.5rem 0; line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="kicker">🧭 Робоча база</div>
+  <h1>VeroCleaning</h1>
+  <p>Усе про проєкт в одному місці: як приймаються рішення, як робляться сторінки, як влаштований сайт.</p>
+</div>
+
+<div class="page">
+
+  <a class="big" href="seo.html">
+    <div class="bh">
+      <div class="bi">📦</div>
+      <div><div class="bt">Як зробити сторінку</div><div class="bs">SEO · GEO · контент · техніка</div></div>
+    </div>
+    <p>Дослідження попиту, шаблон сторінки, schema-блоки, ціни, дизайн-система, інструкція з деплою. Повний набір для створення будь-якої сторінки сайту.</p>
+    <span class="go">Відкрити пакет →</span>
+  </a>
+
+  <a class="big b2" href="playbook/router.html">
+    <div class="bh">
+      <div class="bi">🤝</div>
+      <div><div class="bt">Як приймаються рішення</div><div class="bs">ролі · процес · правки</div></div>
+    </div>
+    <p>Хто за що відповідає, куди дивитись при новій ідеї, як подавати зміни. Внутрішній регламент співпраці.</p>
+    <span class="go">Відкрити регламент →</span>
+  </a>
+
+  <div class="flow">
+    <div class="ft">Як народжується сторінка</div>
+    <div class="frow">
+      <div class="fs"><div class="n">1</div><div class="l">Дослі-<br>дження</div></div>
+      <span class="arrow">→</span>
+      <div class="fs"><div class="n">2</div><div class="l">План</div></div>
+      <span class="arrow">→</span>
+      <div class="fs"><div class="n">3</div><div class="l">Макет</div></div>
+      <span class="arrow">→</span>
+      <div class="fs"><div class="n">4</div><div class="l">Кон-<br>тент</div></div>
+      <span class="arrow">→</span>
+      <div class="fs"><div class="n">5</div><div class="l">SEO</div></div>
+      <span class="arrow">→</span>
+      <div class="fs"><div class="n">6</div><div class="l">Де-<br>плой</div></div>
+    </div>
+  </div>
+
+  <div class="slabel">Швидкий доступ</div>
+  <div class="group">
+    <a class="row" href="README.md">
+      <div class="ic">📖</div>
+      <div class="rb"><div class="t">README</div><div class="d">Опис репозиторію для нових розробників</div></div>
+      <span class="chev">›</span>
+    </a>
+    <a class="row" href="docs/content/vero-facts.json">
+      <div class="ic">💰</div>
+      <div class="rb"><div class="t">vero-facts.json</div><div class="d">Джерело істини: ціни, формула, райони</div></div>
+      <span class="chev">›</span>
+    </a>
+    <a class="row" href="docs/tech/site-technical-docs.md">
+      <div class="ic">⚙️</div>
+      <div class="rb"><div class="t">Технічна документація</div><div class="d">Сніпети, калькулятор, пастки деплою</div></div>
+      <span class="chev">›</span>
+    </a>
+    <a class="row" href="docs/seo/seo-page-template.md">
+      <div class="ic">📋</div>
+      <div class="rb"><div class="t">Шаблон сторінки</div><div class="d">Покроковий рецепт SEO/GEO</div></div>
+      <span class="chev">›</span>
+    </a>
+    <a class="row" href="playbook/design-check.html">
+      <div class="ic">🌈</div>
+      <div class="rb"><div class="t">Перевірка кольору</div><div class="d">Контраст нового відтінку на всіх фонах</div></div>
+      <span class="chev">›</span>
+    </a>
+    <a class="row" href="mockup/">
+      <div class="ic">🖥</div>
+      <div class="rb"><div class="t">Макет головної</div><div class="d">Робочий прототип, відкривається як сайт</div></div>
+      <span class="chev">›</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <div class="nt">⚠️ Почни звідси, якщо ти тут уперше</div>
+    <p>Відкрий <b>README</b> — там пояснено з нуля, як усе влаштовано і в якому порядку читати. Далі <b>«Як зробити сторінку»</b> — це основний робочий набір.</p>
+  </div>
+
+</div>
+
+<footer>VeroCleaning · робоча база проєкту<br>оновлюється разом із сайтом</footer>
+
+</body>
+</html>

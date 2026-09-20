@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeroCleaning — Контент-стратегія сторінок послуг v2.4 (2026-09)</title>
+<style>
+:root{--ink:#14211c;--green:#0fa968;--gdp:#0a7a4b;--mint:#e6f6ee;--sand:#f6f1e9;--line:#e7e0d4;--muted:#566a5f;--err:#e0574f;--amber:#b07d1e;--amber-bg:#fdf6e7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter','Segoe UI',sans-serif;background:var(--sand);color:var(--ink);font-size:15px;line-height:1.62;}
+h1,h2,h3,h4{font-family:'Nunito','Segoe UI',sans-serif;font-weight:800;letter-spacing:-.01em;}
+.wrap{display:flex;max-width:1280px;margin:0 auto;gap:0;}
+nav{width:250px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 18px;border-right:1px solid var(--line);background:#fff;}
+nav .logo{font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;margin-bottom:4px;}
+nav .logo span{color:var(--green);}
+nav .ver{font-size:11px;color:var(--muted);margin-bottom:20px;}
+nav a{display:block;padding:7px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:500;margin-bottom:2px;}
+nav a:hover{background:var(--mint);color:var(--gdp);}
+nav .grp{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px 10px;}
+main{flex:1;padding:36px 44px 90px;min-width:0;background:var(--sand);}
+section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 34px;margin-bottom:26px;}
+.num{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gdp);background:var(--mint);padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:30px;margin-bottom:6px;}
+h2{font-size:22px;margin-bottom:12px;}
+h3{font-size:16.5px;margin:22px 0 8px;}
+p{margin-bottom:10px;color:#2a3a32;}
+.lead{font-size:16px;color:var(--muted);}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;}
+th{background:var(--ink);color:#fff;text-align:left;padding:9px 12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;}
+th:first-child{border-radius:8px 0 0 0;}th:last-child{border-radius:0 8px 0 0;}
+td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+tr:nth-child(even) td{background:#faf8f3;}
+code{background:var(--mint);color:var(--gdp);padding:1.5px 6px;border-radius:5px;font-size:12.5px;font-family:'SF Mono',Consolas,monospace;}
+pre{background:var(--ink);color:#d8e6de;padding:16px 18px;border-radius:12px;font-size:12.5px;overflow-x:auto;margin:12px 0;position:relative;font-family:'SF Mono',Consolas,monospace;line-height:1.55;}
+pre code{background:none;color:inherit;padding:0;}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;}
+.copy-btn:hover{background:var(--green);}
+.callout{border-radius:12px;padding:14px 18px;margin:14px 0;font-size:14px;}
+.callout .cal-title{display:block;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;margin-bottom:4px;}
+.tip{background:var(--mint);border-left:4px solid var(--green);}
+.tip .cal-title{color:var(--gdp);}
+.warn{background:var(--amber-bg);border-left:4px solid var(--amber);}
+.warn .cal-title{color:var(--amber);}
+.critical{background:#fdecea;border-left:4px solid var(--err);}
+.critical .cal-title{color:var(--err);}
+.badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;letter-spacing:.04em;vertical-align:middle;}
+.b-p0{background:var(--err);color:#fff;}
+.b-p1{background:var(--amber);color:#fff;}
+.b-p2{background:var(--green);color:#fff;}
+.b-p3{background:#8d9b93;color:#fff;}
+.b-page{background:var(--mint);color:var(--gdp);}
+.b-nopage{background:#eee5d8;color:#8a7d64;}
+.b-sig{background:#e7f0fb;color:#2b5e9e;border:1px dashed #9dbde3;}
+.b-calc{background:#e7f0fb;color:#2b5e9e;}
+.checklist{list-style:none;margin:10px 0;}
+.checklist li{padding:5px 0 5px 26px;position:relative;}
+.checklist li::before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:800;}
+.xlist{list-style:none;margin:10px 0;}
+.xlist li{padding:5px 0 5px 26px;position:relative;}
+.xlist li::before{content:"✕";position:absolute;left:2px;color:var(--err);font-weight:800;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#faf8f3;}
+.card h4{font-size:14px;margin-bottom:6px;}
+.card p{font-size:13px;margin:0;color:var(--muted);}
+.review-old{color:#9a5a52;text-decoration:line-through;text-decoration-thickness:1.5px;}
+.review-new{color:var(--gdp);font-weight:700;}
+@media(max-width:900px){nav{display:none;}main{padding:20px 16px 80px;}section{padding:20px 18px;}.grid2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="logo">Vero<span>Cleaning</span></div>
+  <div class="ver">Контент-стратегія v2.4 · 2026-09-15 · ціни, extras і дизайн-система оновлені</div>
+  <div class="grp">Ревью</div>
+  <a href="#review">1. Ревью стратегії v1</a>
+  <a href="#gap">2. Розрив план ↔ лайв</a>
+  <div class="grp">Стратегія</div>
+  <a href="#inventory">3. Інвентар сторінок</a>
+  <a href="#excluded">4. Що НЕ отримує сторінку</a>
+  <a href="#template">5. Шаблон v2 (12 блоків)</a>
+  <a href="#calc">6. Міні-калькулятор: 3 варіанти</a>
+  <div class="grp">SEO / GEO</div>
+  <a href="#seo">7. SEO-специфікація</a>
+  <a href="#geo">8. GEO / AI-видимість</a>
+  <a href="#cannibal">9. Анти-канібалізація</a>
+  <a href="#linking">10. Внутрішня перелінковка</a>
+  <div class="grp">Виконання</div>
+  <a href="#waves">11. Хвилі запуску</a>
+  <a href="#owner">11a. Питання до власника</a>
+  <a href="#process">12. Виробничий процес</a>
+  <a href="#mockup">13. Про макет Deep Cleaning</a>
+</nav>
+<main>
+
+<h1>Контент-стратегія сторінок послуг — v2.4</h1>
+<p class="lead" style="margin-bottom:18px;">Ревью стратегії від червня 2026 + план сторінок за моделлю <b>«20 + сигнали»</b>: ядро з ~20 повноцінних сторінок будується одразу, довгий хвіст живе якорями і виноситься в сторінки тільки за даними Search Console. З міні-калькулятором на сторінках і фокусом на SEO/GEO-індексацію.</p>
+
+<div class="card" style="border-left:4px solid #00B34F;background:#E4F6E6;padding:18px 20px;margin:18px 0;border-radius:10px">
+<h3 style="margin-bottom:8px">Що змінилось у v2.4 · 15 вересня 2026 — ЧИННИЙ СТАН</h3>
+<p><b>Ціни перераховані за формулою калькулятора v2.0.</b> Усі приклади в документі замінені на actuals із <code>vero-facts.json</code>. Канонічна матриця: студія-кондо $120 / $180 / $216 / $264, таунхаус $170 / $255 / $306 / $374, будинок $180 / $270 / $324 / $396.</p>
+<p style="margin-top:8px"><b>Extras і знижки тепер відомі.</b> Додаються після множення, коефіцієнт на них не діє. Welcome −$20, Recurring −15%. Повний прайс SKU — у <code>vero-facts.json §step_5_extras</code>.</p>
+<p style="margin-top:8px"><b>Carpet закрито:</b> $69 за зону, не $89. <b>Rug</b> — ціни досі немає, лишається питанням до власника.</p>
+<p style="margin-top:8px"><b>Дизайн-система v3.0.</b> База — файл замовника. Inter 400/500 + Nunito 500. Emerald #00B34F тільки як заливка, ніколи текст. Усі згадки Manrope, Nunito 800 і Roboto в цьому документі застаріли.</p>
+<p style="margin-top:8px"><b>Новий порядок роботи:</b> макети робить замовник за дизайн-скілом, розробник приймає за чек-лістом, наповнює контентом і деплоїть. Реєстр рішень і файлів — у GitHub-репозиторії проєкту.</p>
+<p style="margin-top:8px"><b>Головна = Residential підтверджено.</b> Модель v2.3 лишається чинною: окремої сторінки residential-хаба немає, перемикач на головній веде на <code>/commercial-cleaning-toronto</code>.</p>
+</div>
+<div class="callout" style="margin-bottom:14px;"><span class="cal-title">Що змінилось у v2.3 · 10 серпня 2026 — ЧИННА МОДЕЛЬ</span>
+<p><b>Головна = residential-сторінка. Commercial = окрема сторінка. Третього хаба немає.</b> Модель v2.2 (два хаби + головна як лендінг рівня 1) скасована власником того ж дня. <code>/residential-cleaning-toronto</code> знятий із публікації, віддає <b>301 на <code>/</code></b>, матриця з 34 послуг повернулась на головну.</p>
+<p style="margin-top:8px;"><b>Чому так правильніше.</b> Пара «головна ↔ residential-хаб» була єдиною в інвентарі без осі розведення — видалення одного боку прибирає ризик повністю, а не керує ним. Асиметрія структури відповідає асиметрії бізнесу. Вага концентрується на найсильнішій сторінці: money pages отримують посилання з головної напряму, один стрибок замість двох. Для GEO консолідація виграє — асистент цитує один документ, не зшиває два.</p>
+<p style="margin-top:8px;"><b>Ціна рішення й як закрита.</b> Головна мусить обслуговувати і брендовий запит, і <code>house cleaning toronto</code>. H1 лишився брендовим («True Clean. No surprises.»), під ним доданий H2 <i>«House cleaning in Toronto &amp; the GTA — fixed price from $120»</i>, а <code>&lt;title&gt;</code> має стати транзакційним. H1 тримає голос, H2 забирає запит.</p>
+
+<table style="margin-top:10px;">
+<tr><th>Версія</th><th>Модель</th><th>Чому змінили</th></tr>
+<tr><td>v1</td><td>два хаби, головна = вхід</td><td>початковий план</td></tr>
+<tr><td>v2</td><td>одна головна з res/com тумблером</td><td>тумблер здавався дешевшим за дві сторінки</td></tr>
+<tr><td>v2.2</td><td>два хаби, головна = лендінг рівня 1</td><td>комерція отримала власний URL</td></tr>
+<tr><td><b>v2.3</b></td><td><b>головна = residential, commercial = окрема</b></td><td><b>пара «головна ↔ res-хаб» не мала осі розведення</b></td></tr>
+</table>
+
+<div class="callout warn" style="margin-top:10px;"><span class="cal-title">Правило, щоб не переграти вчетверте</span>
+<p><b>Сторінка створюється лише тоді, коли для неї є вісь розведення з усіма наявними сторінками.</b> Осі: scope, аудиторія, метод, ціна. Якщо єдина вісь — «стадія воронки», це не вісь, а бажання мати ще одну сторінку.</p></div>
+</div>
+
+<div class="callout" style="margin-bottom:14px;opacity:.75;"><span class="cal-title">Що змінилось у v2.2 · скасовано, лишено для історії</span>
+<p><b>Головна перестала бути хабом.</b> Комерція отримала власну живу сторінку <code>/commercial-cleaning-toronto</code>, тож проміжна модель «одна хоум із res/com тумблером» більше не діє. Тумблер став маршрутизатором між двома хабами, а головна піднялась на рівень вище: бренд, довіра, quick start і дві двері в гілки.</p>
+<p style="margin-top:8px;"><b>Матриця з 34 послуг переїжджає на residential-хаб.</b> Це найважливіше рішення релізу: два однакові переліки на двох URL конкурували б за один набір запитів. У Розділ 9 додана пара ризику <b>Головна ↔ Residential hub</b> з віссю «стадія воронки» — єдина пара, де не працює жодна з чотирьох класичних осей.</p>
+<p style="margin-top:8px;">Схема навігації винесена окремо: <code>strategy/2026-08-10-navigation-IA.md</code>. Аналіз головної й порядок робіт: <code>strategy/2026-08-10-homepage-role-plan.md</code>.</p></div>
+
+<div class="callout" style="margin-bottom:26px;"><span class="cal-title">Що змінилось у v2.1 · 10 серпня 2026</span>
+<p><b>Carpet і Rug розділені на дві окремі сторінки.</b> У v2 це був один умовний рядок «Carpet / Rug Cleaning», який чекав відповіді власника про обладнання. Тепер обидві підтверджені: <code>/carpet-cleaning-toronto</code> у W2 і <code>/rug-cleaning-toronto</code> у W3. Причина розділення — різний інтент і різна логістика: килимове покриття чистять на місці й рахують за кімнатою, окремі килими часто вивозять і рахують за розміром та матеріалом. Через це зʼявилась нова пара анти-канібалізації (Розділ 9), змінилась матриця related-лінків (Розділ 10) і переформульоване питання №1 до власника (Розділ 11a) — воно тепер визначає не існування сторінок, а їхню глибину й прайс.</p>
+<p style="margin-top:8px;"><b>✅ Ціни оновлено 15.09.2026 за формулою калькулятора v2.0.</b> Старі приклади «Regular $120 / Deep $180» замінені на актуальні. Актуальна матриця — у <code>MANIFEST.md §5</code>: студія-кондо $120 Regular / $180 Deep, таунхаус $170 / $255, будинок $180 / $270. Числа в тексті нижче не переписувались, щоб не змішувати правку стратегії з правкою прайсу.</p></div>
+
+<section id="review">
+<span class="num">Розділ 1</span>
+<h2>Ревью стратегії v1 (червень 2026)</h2>
+<p>Стратегія v1 фіксувала: <b>22 сторінки</b> = 19 money pages + 2 hub pages + 1 add-ons page, універсальний 11-блочний шаблон, скасування категорії «light pages», JSON-LD набір, 4 хвилі запуску. Що з цього <b>витримало перевірку часом</b>, а що — ні:</p>
+
+<table>
+<tr><th>Рішення v1</th><th>Вердикт</th><th>Чому</th></tr>
+<tr><td>Кожна сторінка = money page standard (без light pages)</td><td>✅ Залишається</td><td>Для нового домену — правильна ставка. Кожна сторінка або тягне на повний шаблон, або не існує взагалі.</td></tr>
+<tr><td>Універсальний фіксований шаблон блоків</td><td>✅ Залишається, але → <b>12 блоків</b></td><td>Додається міні-калькулятор (перенесення робочого CRO-механізму з хоум). Pricing-блок і калькулятор зливаються.</td></tr>
+<tr><td>Анти-канібалізація через scope / аудиторію / метод / ціну</td><td>✅ Залишається без змін</td><td>Механіка робоча, застосовуємо до нового, більшого інвентаря.</td></tr>
+<tr><td>JSON-LD: Service + Offers + FAQPage + Breadcrumb; без AggregateRating</td><td>✅ Залишається</td><td>Чесні trust-сигнали — незмінне правило проєкту.</td></tr>
+<tr><td>3-шаровий GEO-патерн (ticker + sr-only + проза)</td><td>✅ Залишається</td><td>Вже реалізовано на хоум — масштабуємо на сторінки послуг.</td></tr>
+<tr><td><span class="review-old">22 сторінки</span></td><td>❌ Застаріло → <span class="review-new">~20 сторінок + сигнальний резерв</span></td><td>Матриця послуг на лайві виросла до 34 res + 8 com. Але «сторінка на все» = thin content: будуємо ядро (~20), решта — якорі, які підвищуються до сторінок тільки за сигналом попиту (Розділ 11).</td></tr>
+<tr><td><span class="review-old">Spring Cleaning + Open House як окремі money pages</span></td><td>⚠️ Переглянуто</td><td>Обидві відсутні в поточній матриці послуг на сайті. Spring — сезонна кампанія (рішення нижче), Open House — зливається в Related-блок Move-Out. Не в базовому інвентарі.</td></tr>
+<tr><td><span class="review-old">Manrope / Nunito 800 + Roboto</span></td><td>❌ Застаріло → <span class="review-new">Inter + Nunito 500</span></td><td>Дизайн-система оновлена; всі мокапи v1 — на старому шрифті.</td></tr>
+<tr><td><span class="review-old">Хоум як 2 окремі hub-сторінки</span></td><td>✅ <span class="review-new">Повернулись до v1</span></td><td><b>Виправлено у v2.2 (10.08.2026).</b> Проміжна модель «одна хоум із res/com тумблером» померла в момент, коли комерція отримала власний URL <code>/commercial-cleaning-toronto</code>. Тумблер більше не перемикає контент — він став маршрутизатором між двома хабами. <b>Головна виходить із ролі хаба взагалі</b> і стає лендінгом рівня 1: бренд, довіра, найкоротший шлях до ціни, дві двері в гілки. Деталі — <code>2026-08-10-homepage-role-plan.md</code>.</td></tr>
+</table>
+
+<div class="callout tip"><span class="cal-title">Головний висновок ревью</span>
+<p>Скелет стратегії v1 (шаблон, схеми, анти-канібалізація, хвилі) — робочий. Застаріло одне, але фундаментальне: <b>інвентар</b>. Сайт уже «пообіцяв» Google 42 URL-и — стратегія має покрити їх усі: сторінкою, редіректом на якір, або зняттям лінка.</p></div>
+</section>
+
+<section id="gap">
+<span class="num">Розділ 2</span>
+<h2>Розрив: план v1 ↔ поточний лайв</h2>
+<p>Критичний факт: у Service Matrix на хоум-сторінці <b>кожна картка вже є лінком</b> на слаг виду <code>/deep-cleaning-toronto</code>. Це 42 внутрішні посилання (34 res + 8 com). Кожен слаг без реальної сторінки = <b>404 всередині власного сайту</b>.</p>
+<div class="callout critical"><span class="cal-title">Чому це терміново для SEO</span>
+<p>Внутрішні 404 з головної сторінки — прямий сигнал низької якості: краулер витрачає бюджет на биті лінки, PageRank з хоум зливається в нікуди, а Search Console засмічується помилками. До запуску кожної хвилі сторінок — всі непокриті картки мають вести або на існуючу сторінку, або на якір усередині зведеної сторінки (див. Розділ 4).</p></div>
+</section>
+
+<section id="inventory">
+<span class="num">Розділ 3</span>
+<h2>Інвентар сторінок — модель «20 + сигнали»</h2>
+<p>Кожна потенційна сторінка проходить чотири тести <b>одночасно</b>: (1) самостійний пошуковий попит, (2) реальний шанс ранжуватись проти конкурентів цієї ніші, (3) 600+ слів контенту без дублювання сусідів, (4) бізнес цю послугу профільно виконує. Пройшла всі чотири — сторінка. Ні — якір, який чекає на сигнал.</p>
+<p><b>Формула запуску (v2.2, після аналізу попиту):</b> 14 сторінок ядра + 5–6 сильних кандидатів = <b>~20 повноцінних сторінок</b>. Ще ~15 послуг — статус <span class="badge b-sig">anchor-first</span>: живуть секціями з якорями, виносяться в сторінки за даними GSC (критерії — Розділ 11).</p>
+
+<div class="callout"><span class="cal-title">Роль головної · уточнено у v2.2</span>
+<p><b>Головна не є хабом і не входить у рахунок сторінок хвиль.</b> Вона стоїть рівнем вище: бренд, довіра, найкоротший шлях до ціни (quick start) і дві двері — у residential-хаб і в commercial-хаб.</p>
+<p style="margin-top:8px;"><b>Матриці з 34 послуг на ній немає</b> — вона належить residential-хабу. На головній лишається Popular services із шести карток і лінком у хаб. Титул головної бере транзакційний запит із ціною, титул хаба — навігаційний «all services». Це і є структурний захист від канібалізації між ними.</p>
+<p style="margin-top:8px;">Повна аргументація й порядок робіт — <code>strategy/2026-08-10-homepage-role-plan.md</code>, схема навігації — <code>strategy/2026-08-10-navigation-IA.md</code>.</p></div>
+
+<h3>3.1 Ядро — 14 сторінок <span class="badge b-p0">будуються безумовно</span></h3>
+<table>
+<tr><th>Сторінка</th><th>URL</th><th>Ціна / модель</th><th>Калькулятор</th><th>Хвиля</th></tr>
+<tr><td>Residential hub</td><td><code>/residential-cleaning-toronto</code></td><td>—</td><td>—</td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td>Commercial hub</td><td><code>/commercial-cleaning-toronto</code></td><td>—</td><td>—</td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td><b>Головна</b> <span style="font-size:12px;color:var(--muted)">— не хаб, рівень вище</span></td><td><code>/</code></td><td>—</td><td>quick start</td><td><span class="badge b-p0">жива</span></td></tr>
+<tr><td>Deep Cleaning <b>(золотий еталон)</b></td><td><code>/deep-cleaning-toronto</code></td><td>від $180</td><td><span class="badge b-calc">A</span></td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td>Regular Cleaning <span style="font-size:11px;color:var(--muted)">(+ кластер «maid service», recurring weekly/biweekly)</span></td><td><code>/regular-cleaning-toronto</code></td><td>від $120</td><td><span class="badge b-calc">A</span></td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td>Move-In / Move-Out</td><td><code>/move-out-cleaning-toronto</code></td><td>від $216</td><td><span class="badge b-calc">A</span></td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td>Condo Cleaning</td><td><code>/condo-cleaning-toronto</code></td><td>від $120</td><td><span class="badge b-calc">A · preset Condo</span></td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td>House Cleaning</td><td><code>/house-cleaning-toronto</code></td><td>від $180</td><td><span class="badge b-calc">A · preset House</span></td><td><span class="badge b-p0">W1</span></td></tr>
+<tr><td>Airbnb / STR Cleaning</td><td><code>/airbnb-cleaning-toronto</code></td><td>від $100</td><td><span class="badge b-calc">A + turnover</span></td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td>Post-Renovation Cleaning</td><td><code>/post-renovation-cleaning</code></td><td>від $264</td><td><span class="badge b-calc">A</span></td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td>Office Cleaning</td><td><code>/office-cleaning-toronto</code></td><td>quote</td><td><span class="badge b-calc">C</span></td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td>Janitorial Services</td><td><code>/janitorial-cleaning-toronto</code></td><td>quote</td><td><span class="badge b-calc">C</span></td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td>Cleaning Cost Guide <b>(новe у v2.2)</b></td><td><code>/cleaning-prices-toronto</code></td><td>всі фікс-ціни</td><td>лінки на калькулятори</td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td>Appliance Cleaning (зведена, 8 якорів)</td><td><code>/appliance-cleaning-toronto</code></td><td>SKU-грід</td><td><span class="badge b-calc">B · qty</span></td><td><span class="badge b-p2">W3</span></td></tr>
+<tr><td>Add-Ons &amp; Extras (носитель якорів)</td><td><code>/cleaning-add-ons</code></td><td>SKU-грід</td><td>—</td><td><span class="badge b-p2">W3</span></td></tr>
+</table>
+
+<h3>3.2 Сильні кандидати — 6–7 сторінок <span class="badge b-p2">будуються у W2–W3</span></h3>
+<table>
+<tr><th>Сторінка</th><th>URL</th><th>Калькулятор</th><th>Умова / примітка</th><th>Хвиля</th></tr>
+<tr><td><b>Carpet Cleaning</b><br><span style="font-size:13px;color:var(--muted)">килимове покриття, чистимо на місці</span></td><td><code>/carpet-cleaning-toronto</code></td><td><span class="badge b-calc">B · від $69</span></td><td><b>Підтверджена — рішення власника, серпень 2026.</b> Wall-to-wall і килимові доріжки: ціна за кімнатою, робота на об'єкті. Питання №1 (Розділ 11a) більше не вирішує <i>чи будувати</i> — воно визначає глибину сторінки: extraction / hot-water чи поверхнева чистка в межах кліну</td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td><b>Rug Cleaning</b><br><span style="font-size:13px;color:var(--muted)">окремі килими, часто з вивозом</span></td><td><code>/rug-cleaning-toronto</code></td><td><span class="badge b-calc">B · ціна TBD</span></td><td><b>Нова у v2.1.</b> Інший інтент і інша логістика: area rugs, шерсть, шовк, ручна робота, pickup &amp; delivery. Прайс за розміром і матеріалом килима, не за кімнатою. Ціни ще немає в калькуляторі — потрібна від власника разом із рішенням про вивіз</td><td><span class="badge b-p2">W3</span></td></tr>
+<tr><td>Kitchen Cleaning</td><td><code>/kitchen-cleaning-toronto</code></td><td><span class="badge b-calc">B · price card</span></td><td>Room-scope; займає W2-слот, звільнений Window</td><td><span class="badge b-p1">W2</span></td></tr>
+<tr><td>Bathroom Cleaning</td><td><code>/bathroom-cleaning-toronto</code></td><td><span class="badge b-calc">B · price card</span></td><td>Room-scope</td><td><span class="badge b-p2">W3</span></td></tr>
+<tr><td>Healthcare Cleaning</td><td><code>/healthcare-cleaning-toronto</code></td><td><span class="badge b-calc">C</span></td><td>B2B, високий чек, низька конкуренція локально</td><td><span class="badge b-p2">W3</span></td></tr>
+<tr><td>Retail Cleaning</td><td><code>/retail-cleaning-toronto</code></td><td><span class="badge b-calc">C</span></td><td>B2B</td><td><span class="badge b-p2">W3</span></td></tr>
+</table>
+
+<h3>3.3 Anchor-first — ~16 послуг <span class="badge b-sig">сторінка тільки за сигналом</span></h3>
+<p>Не 404 і не «викинуті» — кожна отримує повноцінну секцію з якорем, куди перелінковується її картка з хоум. Виносяться в окремі URL за критеріями Розділу 11.</p>
+<table>
+<tr><th>Послуга</th><th>Якір живе на</th><th>Чому не сторінка зараз</th></tr>
+<tr><td>Pet-Friendly Cleaning</td><td>секції на сторінках Regular + Deep (<code>#pet-friendly</code>)</td><td>Це модифікатор основної послуги, не окремий інтент</td></tr>
+<tr><td>Eco / Green Cleaning</td><td>секції на Regular + Deep (<code>#eco</code>)</td><td>Те саме; синхронізується з майбутнім Eco-toggle калькулятора</td></tr>
+<tr><td>Townhouse Cleaning</td><td><code>/house-cleaning-toronto#townhouse</code></td><td>Низький окремий попит; House-сторінка покриває інтент</td></tr>
+<tr><td>Window Cleaning <b>(понижено у v2.2)</b></td><td><code>/cleaning-add-ons#windows</code> · реframe «interior windows»</td><td>Запит «window cleaning toronto» належить exterior-спеціалістам ($130–380/будинок); наш $30/вікно interior — add-on, не конкурент</td></tr>
+<tr><td>Steam Cleaning</td><td><code>/cleaning-add-ons#steam</code></td><td>Метод, не послуга; питання власнику про обладнання</td></tr>
+<tr><td>Upholstery Cleaning</td><td><code>/cleaning-add-ons#upholstery</code></td><td>SKU-add-on ($49/диван); ніша extraction-спеціалістів</td></tr>
+<tr><td>Mattress Cleaning</td><td><code>/cleaning-add-ons#mattress</code></td><td>SKU-add-on ($60)</td></tr>
+<tr><td>Hardwood Floor Cleaning</td><td><code>/cleaning-add-ons#hardwood</code></td><td>Питання власнику: чистка чи полірування/рефініш?</td></tr>
+<tr><td>Basement Cleaning</td><td><code>/deep-cleaning-toronto#basement</code></td><td>Вже покрито Basement-toggle калькулятора</td></tr>
+<tr><td>Patio / Balcony</td><td><code>/cleaning-add-ons#patio</code></td><td>Сезонна, вузька</td></tr>
+<tr><td>Tile &amp; Grout</td><td><code>/cleaning-add-ons#tile-grout</code></td><td>Перший кандидат на підвищення — реальний інтент, але спершу сигнал</td></tr>
+<tr><td>Warehouse Cleaning</td><td><code>/commercial-cleaning-toronto#warehouse</code></td><td rowspan="4">Нішеві B2B — секції на Commercial-хабі; кожна з власним H2, чеклистом і quote-CTA. Виносяться за першими ж комерційними лідами, не чекаючи GSC</td></tr>
+<tr><td>Rental Turnover</td><td><code>/commercial-cleaning-toronto#rental</code></td></tr>
+<tr><td>Fitness / Studio</td><td><code>/commercial-cleaning-toronto#fitness</code></td></tr>
+<tr><td>Spa / Salon</td><td><code>/commercial-cleaning-toronto#spa-salon</code></td></tr>
+</table>
+<div class="callout tip"><span class="cal-title">Чому «20 + сигнали» сильніше за «34 за планом»</span>
+<p>Кожна anchor-секція на сильній сторінці успадковує її авторитет і ранжується за низькочастотними запитами вже зараз. Коли GSC покаже реальні покази — виносимо в сторінку з 301-безпечним якорем і готовим стартовим контентом. Кожна нова сторінка стає відповіддю на дані, а не на чекліст. Економія проти повного плану — ~6 тижнів роботи, нуль ризику thin content.</p></div>
+</section>
+
+<section id="excluded">
+<span class="num">Розділ 4</span>
+<h2>Що взагалі не отримує ні сторінки, ні амбіцій</h2>
+<p>Окремо від anchor-first (які чекають на сигнал) — послуги, що лишаються чистими add-on-позиціями на <code>/cleaning-add-ons</code> без жодних SEO-очікувань:</p>
+<table>
+<tr><th>Послуга</th><th>Куди веде картка з хоум</th><th>Обґрунтування</th></tr>
+<tr><td>Wall / Door Cleaning</td><td><code>/cleaning-add-ons#walls</code></td><td>Замовляється тільки разом з основною послугою</td></tr>
+<tr><td>Inside Cabinets</td><td><code>/cleaning-add-ons#cabinets</code></td><td>Контент уже живе в чеклистах Move-Out і Deep</td></tr>
+<tr><td>Blinds / Drapery</td><td><code>/cleaning-add-ons#blinds</code></td><td>Ніша ultrasonic-спеціалістів — не наша</td></tr>
+<tr><td>Laundry Service</td><td><code>/cleaning-add-ons#laundry</code></td><td>«Laundry service toronto» = інша індустрія (wash&amp;fold)</td></tr>
+<tr><td>Home Organizing</td><td><code>/cleaning-add-ons#organizing</code></td><td>Окрема вертикаль — питання власнику, чи розвивати (Розділ 11a)</td></tr>
+<tr><td>8 приладів окремо</td><td><code>/appliance-cleaning-toronto#oven</code> тощо</td><td>Зведені в одну сторінку (Розділ 3.1)</td></tr>
+<tr><td>Spring Cleaning</td><td>—</td><td>Сезонне рішення власника: якщо так — окрема сторінка в січні 2027, scope ширший за Deep, ціна $249+</td></tr>
+<tr><td>Open House Cleaning</td><td>абзац + FAQ на сторінці Move-Out</td><td>Realtor-аудиторію ловимо контентом, не URL-ом</td></tr>
+</table>
+<div class="callout warn"><span class="cal-title">Обов'язковий крок при деплої кожної хвилі</span>
+<p>Синхронно з публікацією сторінок — оновити <code>href</code> усіх карток Service Matrix на хоум, що переходять на якірний статус (усього ~22 картки: Extras 6 + Appliances 8 + anchor-first 8 residential). Це правка <code>vero-page-BUILT.html</code> → WPCode «Vero — Page». Снапшот перед перезаписом.</p></div>
+</section>
+
+<section id="template">
+<span class="num">Розділ 5</span>
+<h2>Універсальний шаблон v2 — 12 блоків</h2>
+<p>Еволюція 11-блочного шаблону v1: Pricing і калькулятор зливаються в один інтерактивний блок, додається Before/After (найсильніший візуальний trust-актив з хоум). Зонування sand↔white — той самий патерн, що на хоум v7.</p>
+<pre><code>Шаблон сторінки послуги (12 блоків):
+
+ 1. Hero (sand)          — Breadcrumb → H1 → підзаголовок → price-chip
+                           "from $X" → CTA "Get my price" (скрол до калк.)
+ 2. Trust strip (sand)   — тікер + sr-only список + (3-шаровий GEO-патерн)
+ 3. Intro (white)        — 2–3 абзаци декларативної прози;
+                           ПЕРШЕ речення фіксує scope та інтент
+ 4. Mini-calculator      — Варіант A / B / C (Розділ 6), preset
+    (sand)                 на поточну послугу
+ 5. What's included      — чеклист &lt;ul&gt;&lt;li&gt; по кімнатах/зонах,
+    (white)                видимий HTML (не таби-приховані!)
+ 6. Comparison (white)   — "Ця послуга vs сусідня" (Deep vs Regular,
+                           Move-Out vs Deep…) — таблиця
+ 7. How it works (sand)  — 3 кроки (переносимо блок з хоум)
+ 8. Before / After       — слайдер з реальними фото ЦІЄЇ послуги
+    (sand)
+ 9. Why VeroCleaning     — 3 чесні trust-пункти: fixed price,
+    (white)                vetted &amp; insured, 24h guarantee
+10. Service areas        — city-чипи 17 міст GTA + декларативний
+    (white)                GEO-абзац
+11. FAQ (sand)           — 5–7 акордеонів, FAQPage schema
+12. Related + CTA (dark) — 3 related-картки → фінальний CTA
+                           → sticky bottom bar "from $X"
+</code><button class="copy-btn" onclick="copyPre(this)">Copy</button></pre>
+<div class="callout tip"><span class="cal-title">Блоки 5 і 6 — SEO-серце сторінки</span>
+<p>Чеклист «What's included» — це те, що Google витягує у featured snippets, а AI-моделі цитують у відповідях. Він має бути видимим <code>&lt;ul&gt;</code> у DOM, не за display:none-табами. Comparison-таблиця одночасно знімає канібалізацію і ловить запити виду «deep cleaning vs regular cleaning».</p></div>
+</section>
+
+<section id="calc">
+<span class="num">Розділ 6</span>
+<h2>Міні-калькулятор на сторінках — 3 варіанти</h2>
+<p>Не кожна послуга рахується через bed/bath. Три варіанти блоку 4 — за типом прайсингу:</p>
+<div class="grid2">
+<div class="card"><h4><span class="badge b-calc">Варіант A</span> Bed/Bath калькулятор</h4><p><b>Для:</b> Deep, Regular, Move-Out, Post-Reno, Condo, House, Airbnb = 7 сторінок ядра.<br><b>Механіка:</b> той самий калькулятор з хоум (<code>veroRecalcMini()</code>), але з пресетом: на Deep-сторінці база $180 (service delta ×1.5 від Regular $120), на Condo-сторінці Home type зафіксований на Condo (карточки Property приховані або preselected). Стан пресету — через <code>data-service</code> на контейнері, JS читає при init. JS↔HTML контракт хоум-калькулятора не змінюється — додається лише поверхнева ініціалізація.</p></div>
+<div class="card"><h4><span class="badge b-calc">Варіант B</span> Price card / qty-віджет</h4><p><b>Для:</b> Window, Kitchen, Bathroom, Appliance, Carpet, Rug = 6 сторінок.<br><b>Механіка:</b> статична SKU-картка «$49 за диван / $30 за вікно» + опційний qty-степер (× кількість) з live-сумою. Без bed/bath. CTA → <code>/book</code> з query-пресетом послуги.</p></div>
+<div class="card"><h4><span class="badge b-calc">Варіант C</span> Quote-форма</h4><p><b>Для:</b> Office, Janitorial, Healthcare, Retail (4 сторінки) + якірні B2B-секції Commercial-хаба.<br><b>Механіка:</b> компактна форма business + phone (+ preset property type за сторінкою) → сабміт на <code>/get-a-quote?property=…</code>. Реюз <code>veroQuoteSubmit()</code>-патерну.</p></div>
+<div class="card"><h4>Спільне для всіх варіантів</h4><p>Хедер-плашка з живою ціною (ink-фон, зелена ціна) — впізнаваний якір з хоум. Футер-дисклеймер «Estimate only · exact fixed price on the next step». Кнопка веде на <code>/book</code> з пресетом послуги в query — крок до майбутнього frequency-селектора і Stripe.</p></div>
+</div>
+</section>
+
+<section id="seo">
+<span class="num">Розділ 7</span>
+<h2>SEO-специфікація на сторінку</h2>
+<h3>7.1 Патерни Title / Meta / H1</h3>
+<pre><code>Title (≤60 симв.):
+  Residential: {Service} Toronto | Fixed Price from ${X} — VeroCleaning
+  Commercial:  {Service} Toronto &amp; GTA | Get a Quote — VeroCleaning
+
+Meta description (≤155 симв.):
+  {Service} in Toronto &amp; the GTA. Fixed upfront pricing from ${X},
+  vetted &amp; insured cleaners, 24-hour guarantee. Book online in 60 seconds.
+
+H1 (єдиний на сторінці):
+  {Service} Toronto            ← точна відповідність головному запиту
+H2-кластер: What's included · {Service} vs {Neighbor} · How it works ·
+  Pricing · Service areas · FAQ  ← кожен H2 = підзапит</code><button class="copy-btn" onclick="copyPre(this)">Copy</button></pre>
+
+<h3>7.2 JSON-LD на кожній сторінці</h3>
+<table>
+<tr><th>Тип сторінки</th><th>Схеми</th></tr>
+<tr><td>Residential money (фікс-ціна)</td><td><code>Service</code> + <code>Offer</code> (price, priceCurrency:CAD) + <code>FAQPage</code> + <code>BreadcrumbList</code></td></tr>
+<tr><td>Commercial money (quote)</td><td><code>Service</code> + <code>ContactPoint</code> (замість Offer) + <code>FAQPage</code> + <code>BreadcrumbList</code></td></tr>
+<tr><td>Хаби</td><td><code>Service</code> + <code>ItemList</code> (всі дочірні сторінки) + <code>BreadcrumbList</code></td></tr>
+<tr><td>Site-wide (один раз, у хедері)</td><td><code>LocalBusiness</code>: назва, (416) 206-4408, 10 Shallmar Blvd, areaServed = 17 міст GTA, openingHours</td></tr>
+</table>
+<div class="callout critical"><span class="cal-title">Незмінне правило</span>
+<p>Жодного <code>AggregateRating</code> і жодних вигаданих відгуків — ніде. Впроваджувати JSON-LD разом із контентом сторінки, не «окремим проходом потім».</p></div>
+
+<h3>7.3 Технічні вимоги</h3>
+<ul class="checklist">
+<li>Canonical = сам на себе на кожній сторінці; trailing slash консистентно</li>
+<li>Breadcrumb видимий у Hero: Home → Residential → {Service}</li>
+<li>Кожне зображення: описовий <code>alt</code> з містом («Deep cleaning baseboards Toronto — before»), <code>loading="lazy"</code>, WebP</li>
+<li>Одна H1, логічна ієрархія H2→H3, чеклисти — семантичні <code>&lt;ul&gt;</code></li>
+<li>XML sitemap оновлюється при кожній хвилі; сторінки без контенту не публікуються «заглушками» — краще пізніше, ніж порожніми</li>
+</ul>
+</section>
+
+<section id="geo">
+<span class="num">Розділ 8</span>
+<h2>GEO — видимість в AI-відповідях</h2>
+<p>Патерн, відпрацьований на хоум, стає стандартом кожної сторінки:</p>
+<ul class="checklist">
+<li><b>Шар 1 — тікер</b>: візуальний UX для людини (анімовані переваги)</li>
+<li><b>Шар 2 — <code>&lt;ul class="sr-only"&gt;</code></b>: той самий контент статичним списком для краулерів</li>
+<li><b>Шар 3 — декларативна проза</b>: 2–4 повні речення, які AI може процитувати дослівно як відповідь</li>
+</ul>
+<pre><code>&lt;!-- Приклад шару 3 для Deep Cleaning (блок Intro) --&gt;
+&lt;p&gt;VeroCleaning provides professional deep cleaning across Toronto
+and the GTA at a fixed price starting at $180 for a studio condo.
+A deep clean covers the entire home — including baseboards, inside
+appliances, light fixtures, and areas a regular cleaning skips.
+Every cleaner is background-checked and insured, and all work is
+backed by a 24-hour re-clean guarantee.&lt;/p&gt;</code><button class="copy-btn" onclick="copyPre(this)">Copy</button></pre>
+<div class="callout tip"><span class="cal-title">Формула «AI-цитованого» абзацу</span>
+<p>Хто (VeroCleaning) + що (deep cleaning) + де (Toronto &amp; GTA) + скільки ($180, фікс) + чим відрізняється (scope) + чому довіряти (insured, 24h). Один такий абзац на сторінку, без маркетингових прикметників — тільки перевірювані факти. Це те, що ChatGPT/Perplexity/AI Overviews реально підставляють у відповіді на «how much does deep cleaning cost in Toronto».</p></div>
+<div class="callout warn"><span class="cal-title">v2.2 · Off-page GEO — обов'язковий паралельний трек</span>
+<p>За даними 2026: 65%+ AI-цитат — з third-party джерел (Google-відгуки, каталоги, best-of списки), поріг сильної видимості ≈ 4.5+ і 30+ відгуків. Он-пейдж GEO необхідний, але сам не поставить Vero у відповідь «best cleaning company in Toronto». Паралельний трек: повний GBP, системний чесний збір відгуків після кожного клінінгу, NAP-консистентність у каталогах, робота над присутністю в best-of списках. Деталі — у файлі vero-search-demand-analysis.html, Розділ 5.</p></div>
+<p>Додатково: FAQ-питання формулюються так, як їх ставлять AI-асистентам («How much does…», «What's included in…», «Do I need to be home…») — кожна відповідь починається з прямого факту в першому реченні, деталі — після.</p>
+</section>
+
+<section id="cannibal">
+<span class="num">Розділ 9</span>
+<h2>Анти-канібалізація — 4 механізми (без змін з v1)</h2>
+<table>
+<tr><th>Механізм</th><th>Пара ризику</th><th>Як розводимо</th></tr>
+<tr><td><b>Scope</b></td><td>Kitchen/Bathroom ↔ Deep</td><td>Перше речення інтро: «single-room service» vs «whole-home». Comparison-таблиця (блок 6) закріплює.</td></tr>
+<tr><td><b>Аудиторія</b></td><td>Move-Out ↔ Airbnb ↔ Rental (com)</td><td>Tenant/landlord vs host vs property manager — різна лексика, різні FAQ, різні болі.</td></tr>
+<tr><td><b>Метод</b></td><td>Steam ↔ Carpet ↔ Upholstery</td><td>Steam = метод (як чистимо), Carpet/Upholstery = поверхня (що чистимо). Крос-лінки замість дублювання.</td></tr>
+<tr><td><b>Обʼєкт + логістика</b></td><td>Carpet ↔ Rug</td><td><b>Нова пара ризику v2.1.</b> Carpet = закріплене покриття, чистимо на місці, ціна за кімнатою. Rug = окремий предмет, часто з вивозом, ціна за розміром і матеріалом. Перше речення інтро на кожній сторінці мусить називати саме цю різницю; comparison-блок (блок 6) на обох сторінках порівнює їх між собою, а не з Deep.</td></tr>
+<tr><td><b>Стадія воронки</b></td><td>Головна <code>/</code> ↔ Residential hub</td><td><b>Найризикованіша пара v2.2 — і єдина, де не працює жодна з чотирьох класичних осей.</b> Аудиторія та сама, scope той самий, ціни ті самі. Розводить тільки стадія: головна відповідає «хто ви і скільки це коштує» (брендові + транзакційні запити, H1 бренд-лід), хаб відповідає «яка саме послуга мені потрібна» (<code>residential cleaning toronto</code>, H1 під запит).<br><br><b>Правило, яке робить цю вісь робочою:</b> матриця з 34 послуг існує <b>в одному екземплярі — на хабі</b>. На головній лишається блок Popular services із шести карток і лінком у хаб. Дві однакові матриці на двох URL = два документи, що конкурують за один набір запитів.</td></tr>
+<tr><td><b>Ціна</b></td><td>Regular $120 ↔ Deep $180 ↔ Move-Out $216</td><td>Різниця ціни сама пояснює різницю обсягу; comparison-блок показує це в лоб.</td></tr>
+</table>
+<p>Нова пара ризику v2: <b>Condo ↔ Regular</b> (обидві ловлять «condo cleaning toronto»-суміжні запити). Розв'язка: Condo-сторінка = property-кут (розмір, консьєрж, ліфти, кондо-специфіка), Regular = frequency-кут (що входить у стандартний клін, графіки). H2-кластери не перетинаються.</p>
+</section>
+
+<section id="linking">
+<span class="num">Розділ 10</span>
+<h2>Внутрішня перелінковка</h2>
+<ul class="checklist">
+<li><b>Хоум → сторінки:</b> Service Matrix + Popular Services — вже є, лишається виправити 14 no-page карток на якорі (Розділ 4)</li>
+<li><b>Хаб → діти:</b> кожен хаб лінкує всі свої money pages (це і є його роль + ItemList schema)</li>
+<li><b>Сторінка → хаб:</b> через видимий breadcrumb у Hero</li>
+<li><b>Сторінка → 3 related:</b> блок 12; правила пар: Deep→Regular/Move-Out/Kitchen · Condo→Deep/Regular/Airbnb · <b>Carpet→Rug/Steam/Upholstery</b> · <b>Rug→Carpet/Upholstery/Steam</b> тощо — фіксуємо матрицю пар при виробництві кожної хвилі. Carpet і Rug лінкують одна одну <b>першим</b> related-слотом: це найкоротший шлях розвести інтенти для Google і для людини</li>
+<li><b>Сторінка → /book:</b> всі CTA несуть query-пресет послуги (<code>?service=deep</code>) — задел під аналітику атрибуції по сторінках</li>
+<li><b>Comparison-блок:</b> лінк на «сусідню» послугу прямо в таблиці — природний контекстний анкор</li>
+</ul>
+</section>
+
+<section id="waves">
+<span class="num">Розділ 11</span>
+<h2>Хвилі запуску — 20 сторінок за 3 хвилі + сигнальний цикл</h2>
+<table>
+<tr><th>Хвиля</th><th>Сторінки</th><th>К-сть</th><th>Логіка</th></tr>
+<tr><td><span class="badge b-p0">W1 · ядро</span></td><td>2 хаби + Deep (еталон) + Regular + Move-Out + Condo + House</td><td>7</td><td>Максимальний попит + повна воронка хаб→money. Deep будується першим, затверджується, стає донором структури. Commercial-хаб одразу з 4 anchor-секціями нішевих B2B.</td></tr>
+<tr><td><span class="badge b-p1">W2</span></td><td>Airbnb, Post-Reno, Office, Janitorial, <b>Cost Guide</b>, Kitchen, <b>Carpet</b></td><td>7</td><td>Другий ешелон + B2B + ціновий гайд (головний AI-магніт за аналізом попиту). Move-Out з W1 має бути в індексі до березня — сезонні піки 1 трав/1 лип.</td></tr>
+<tr><td><span class="badge b-p2">W3 · фініш бази</span></td><td>Bathroom, Appliance (зведена), Add-Ons, Healthcare, Retail, <b>Rug</b></td><td>6</td><td>Закриває базове покриття: всі 42 лінки з хоум ведуть на живі URL або якорі. Нуль внутрішніх 404.</td></tr>
+<tr><td><span class="badge b-sig">Сигнальний цикл</span></td><td>Кандидати з Розділу 3.3 — за даними</td><td>0…15</td><td>Щоквартальний перегляд GSC. Перші кандидати за очікуванням: Tile-Grout, Townhouse, нішеві B2B (ці — за лідами, не за GSC).</td></tr>
+</table>
+<h3>Критерії підвищення якоря до сторінки</h3>
+<ul class="checklist">
+<li><b>GSC-сигнал:</b> якірна секція (URL сторінки-носія + запити цієї послуги) збирає ≥300 показів/міс або ≥10 кліків/міс протягом 2 місяців поспіль</li>
+<li><b>Бізнес-сигнал:</b> ≥3 реальні замовлення послуги за квартал (для B2B — ≥1 квота-запит), тобто попит підтверджено грошима, не лише пошуком</li>
+<li><b>Контент-готовність:</b> є що додати понад існуючу секцію — фото своїх робіт, розширений чеклист, специфічні FAQ. Нема чого додати = сторінка не потрібна</li>
+<li><b>Механіка виносу:</b> нова сторінка → 301-логіка не потрібна (якір лишається і лінкує на сторінку) → секція-носій скорочується до тизера з лінком → related-матриця оновлюється → MANIFEST.md</li>
+</ul>
+<div class="callout warn"><span class="cal-title">Темп</span>
+<p>1 хвиля ≈ 3–4 тижні (контент, фото, схеми, деплой, перелінковка). База з 19–20 сторінок — за ~2,5 місяці замість ~4 на повний план. Не публікувати сторінку без реального чеклиста і FAQ — тонкі сторінки шкодять більше, ніж їх відсутність.</p></div>
+</section>
+
+<section id="owner">
+<span class="num">Розділ 11a</span>
+<h2>Питання до власника — блокери рішень</h2>
+<p>Шість питань, від яких залежить фінальний склад сторінок. Відповіді потрібні до старту W2 (питання 1) і до сигнального циклу (решта):</p>
+<table>
+<tr><th>#</th><th>Питання</th><th>Що вирішує</th></tr>
+<tr><td>1</td><td><b>Carpet і Rug — обладнання й логістика.</b> Обидві сторінки підтверджені, тож питання вже не «чи будувати», а <b>що саме обіцяти</b>:<br>• чи є extraction / hot-water обладнання, чи це поверхнева чистка в межах кліну?<br>• килими беремо на вивіз (pickup &amp; delivery) чи працюємо лише на об'єкті?<br>• прайс за розміром килима — які межі?</td><td>Глибину обох сторінок і те, чи взагалі має сенс окрема Rug-сторінка проти спеціалістів із мийкою. Прайс потрібен ще й у калькулятор: ✅ Carpet закрито: $69 за зону (прайс 15.09). Для Rug ціни досі немає. Відповідь потрібна <b>до старту W2</b>.</td></tr>
+<tr><td>2</td><td><b>Steam cleaning:</b> яке обладнання реально є і що ним чистимо (підлоги? меблі? матраци?)</td><td>Формулювання якірної секції; потенційне об'єднання Steam+Upholstery+Mattress в один кластер</td></tr>
+<tr><td>3</td><td><b>Hardwood floors:</b> це чистка/догляд чи полірування-рефініш? Другого в клінінгу зазвичай нема</td><td>Зміст якоря; якщо тільки чистка — вона вже в базовому чеклисті, окремий контент не потрібен</td></tr>
+<tr><td>4</td><td><b>Home Organizing:</b> розвиваємо як вертикаль (окремий прайс, окремі виконавці) чи це разова допомога?</td><td>Вертикаль → сторінка в сигнальному циклі; ні → лишається add-on назавжди</td></tr>
+<tr><td>5</td><td><b>Spring Cleaning:</b> запускаємо сезонну кампанію в січні 2027 (сторінка + промо)?</td><td>Планування W-сезонної сторінки: scope ширший за Deep, ціна $249+</td></tr>
+<tr><td>6</td><td><b>Нішеві B2B</b> (Warehouse, Fitness, Spa): чи були реальні запити/ліди з цих галузей?</td><td>Пріоритет виносу з якорів Commercial-хаба — за лідами, не за GSC</td></tr>
+</table>
+<div class="callout tip"><span class="cal-title">Формат для розмови</span>
+<p>Питання сформульовані так, щоб власник відповідав про бізнес (що вміємо, що було), а не про SEO. Рішення «сторінка чи якір» — за нами на базі його відповідей.</p></div>
+</section>
+
+<section id="process">
+<span class="num">Розділ 12</span>
+<h2>Виробничий процес</h2>
+<ul class="checklist">
+<li><b>Крок 1 — золотий еталон:</b> Deep Cleaning повністю (всі 12 блоків, реальний контент, JSON-LD, фото) → перегляд на iPhone → затвердження</li>
+<li><b>Крок 2 — технічна упаковка:</b> еталон розбирається на реюзабельні фрагменти в <code>vero-blocks/</code> (патерн, що вже працює для хоум) + шаблонний WPCode-сніпет стилів сторінок послуг (один спільний CSS на всі сторінки послуг — нові класи з префіксом <code>.vero-sp-*</code>)</li>
+<li><b>Крок 3 — пакети по 3–4:</b> кожна нова сторінка = копія структури еталона + заміна контент-змінних (H1, ціна, чеклист, FAQ, related-матриця, schema-поля). Контент-змінні кожної сторінки зручно готувати одним JSON-блоком перед версткою</li>
+<li><b>Крок 4 — валідація перед деплоєм:</b> автоматичний чек: одна H1, всі <code>href</code> існують, schema валідна (Rich Results Test), alt на всіх img, чеклист ≥ 15 пунктів, FAQ ≥ 5</li>
+<li><b>Крок 5 — деплой:</b> снапшот WPCode → публікація → жива перевірка (не вірити звіту про успіх) → оновлення sitemap → оновлення MANIFEST.md</li>
+</ul>
+</section>
+
+<section id="mockup">
+<span class="num">Розділ 13</span>
+<h2>Пробний макет — Deep Cleaning Toronto</h2>
+<p>Разом із цим документом іде <code>vero-deep-cleaning-MOCKUP.html</code> — повний робочий макет сторінки за 12-блочним шаблоном, на дизайн-системі хоум ⚠ станом на серпень (Nunito 800/Roboto — застаріло, чинна пара Inter + Nunito 500), токени, sand↔white зони, той самий стиль карток і CTA):</p>
+<ul class="checklist">
+<li>Робочий міні-калькулятор Варіанту A з пресетом Deep (+$70 до бази → від $180), включно з Basement-логікою з хоум</li>
+<li>Видимий чеклист «What's included» по 4 зонах (Kitchen / Bathrooms / Bedrooms &amp; Living / Deep-only tasks)</li>
+<li>Comparison-таблиця Deep vs Regular з крос-лінком</li>
+<li>GEO-абзац за формулою з Розділу 8, FAQ-акордеон (5 питань), city-чипи, related-картки, sticky bottom bar</li>
+<li>JSON-LD (Service + Offer + FAQPage + BreadcrumbList) прямо в <code>&lt;head&gt;</code> як зразок для еталона</li>
+</ul>
+<p>Відкривається на iPhone як standalone-файл. Це макет для затвердження напрямку — не продакшн-код для WPCode (при переносі стилі підуть у спільний сніпет, JS — у «Vero — Scripts»).</p>
+</section>
+
+</main>
+</div>
+<script>
+function copyPre(btn){var code=btn.parentElement.querySelector('code');navigator.clipboard.writeText(code.innerText).then(function(){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy';},1500);});}
+</script>
+</body>
+</html>

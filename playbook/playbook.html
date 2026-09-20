@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VeroCleaning — Playbook співпраці</title>
+<style>
+  :root{
+    --bg:#F5F5F7; --card:#FFFFFF; --ink:#1D1D1F; --sub:#6E6E73;
+    --line:rgba(60,60,67,.12); --accent:#0A7548; --accent-soft:#E4F5EC;
+    --blue:#007AFF; --amber:#FF9F0A; --amber-soft:#FFF3DE; --pink:#FF2D55; --pink-soft:#FFE5EA;
+    --r-lg:1.25rem; --r-md:.9rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.45;
+    -webkit-font-smoothing:antialiased; padding-bottom:3rem;
+  }
+  .page{max-width:26rem; margin:0 auto; padding:0 1rem}
+
+  /* ===== HEADER ===== */
+  .hero{padding:2.5rem 1.25rem 1.5rem; text-align:center}
+  .hero .kicker{font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:.5rem}
+  .hero h1{font-size:2rem; font-weight:700; letter-spacing:-.02em; margin-bottom:.5rem}
+  .hero p{font-size:.9375rem; color:var(--sub); max-width:22rem; margin:0 auto}
+
+  /* ===== TABS ===== */
+  .tabs{position:sticky; top:0; z-index:20; background:rgba(245,245,247,.88);
+    backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
+    padding:.6rem 1rem .7rem; border-bottom:1px solid var(--line)}
+  .tabrow{display:flex; gap:.3rem; background:rgba(118,118,128,.12); border-radius:.7rem; padding:.2rem;
+    max-width:26rem; margin:0 auto; overflow-x:auto; scrollbar-width:none}
+  .tabrow::-webkit-scrollbar{display:none}
+  .tabrow button{flex:1; min-width:4.4rem; font-family:inherit; font-size:.75rem; font-weight:600;
+    padding:.5rem .4rem; border:0; border-radius:.5rem; background:none; color:var(--sub);
+    cursor:pointer; white-space:nowrap; transition:background .18s, color .18s}
+  .tabrow button.on{background:var(--card); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .tabrow button:active{transform:scale(.97)}
+
+  .panel{display:none; padding-top:1.25rem; animation:fade .25s ease}
+  .panel.on{display:block}
+  @keyframes fade{from{opacity:0; transform:translateY(4px)} to{opacity:1; transform:none}}
+
+  /* ===== SECTION LABEL ===== */
+  .slabel{font-size:.8125rem; font-weight:600; color:var(--sub); text-transform:uppercase;
+    letter-spacing:.05em; margin:1.5rem .2rem .55rem}
+  .slabel:first-child{margin-top:0}
+
+  /* ===== CARD GROUP (iOS list style) ===== */
+  .group{background:var(--card); border-radius:var(--r-lg); overflow:hidden; margin-bottom:.4rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .row{display:flex; gap:.8rem; align-items:flex-start; padding:.85rem 1rem; border-top:1px solid var(--line);
+    text-decoration:none; color:inherit}
+  a.row:active{background:var(--bg)}
+  .row:first-child{border-top:0}
+  .ic{width:2.1rem; height:2.1rem; border-radius:.6rem; display:grid; place-items:center;
+    font-size:1.05rem; flex:none; background:var(--accent-soft)}
+  .row .body{flex:1; min-width:0}
+  .row .t{font-size:.9375rem; font-weight:600; letter-spacing:-.005em}
+  .row .d{font-size:.8125rem; color:var(--sub); margin-top:.15rem; line-height:1.4}
+  .row .badge{font-size:.625rem; font-weight:700; padding:.15rem .5rem; border-radius:.4rem;
+    white-space:nowrap; flex:none; align-self:flex-start; margin-top:.1rem}
+  .badge.ready{background:var(--accent-soft); color:var(--accent)}
+  .badge.wip{background:var(--amber-soft); color:#9C6500}
+
+  /* ===== ROLE CARDS ===== */
+  .rolecard{background:var(--card); border-radius:var(--r-lg); padding:1.1rem 1.15rem; margin-bottom:.9rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .rolecard .rh{display:flex; align-items:center; gap:.6rem; margin-bottom:.7rem}
+  .rolecard .rh .av{width:2.5rem; height:2.5rem; border-radius:50%; display:grid; place-items:center;
+    font-size:1.2rem; background:var(--accent)}
+  .rolecard .rh .name{font-size:1.0625rem; font-weight:700}
+  .rolecard .rh .role{font-size:.75rem; color:var(--sub)}
+  .rolecard ul{list-style:none}
+  .rolecard li{display:flex; gap:.55rem; font-size:.875rem; padding:.35rem 0; align-items:flex-start}
+  .rolecard li::before{content:"✓"; color:var(--accent); font-weight:700; flex:none}
+  .rolecard.client .rh .av{background:var(--blue)}
+
+  .rule{background:linear-gradient(135deg,var(--accent-soft),#F0F9F3); border-radius:var(--r-lg);
+    padding:1.1rem 1.15rem; margin-bottom:.9rem; border:1px solid rgba(10,117,72,.15)}
+  .rule .rt{font-size:.8125rem; font-weight:700; color:var(--accent); margin-bottom:.35rem}
+  .rule p{font-size:.875rem; line-height:1.5}
+
+  /* ===== PIPELINE ===== */
+  .steps{position:relative; padding-left:1.9rem; margin-top:.3rem}
+  .steps::before{content:""; position:absolute; left:.95rem; top:.6rem; bottom:1.6rem; width:2px;
+    background:var(--line)}
+  .step{position:relative; margin-bottom:1.3rem}
+  .step .num{position:absolute; left:-1.9rem; top:0; width:1.9rem; height:1.9rem; border-radius:50%;
+    background:var(--accent); color:#fff; font-size:.8125rem; font-weight:700; display:grid; place-items:center}
+  .step .stitle{font-size:.9375rem; font-weight:600; margin-bottom:.2rem}
+  .step .sdesc{font-size:.8125rem; color:var(--sub); line-height:1.5; margin-bottom:.4rem}
+  .step .based{display:inline-flex; align-items:center; gap:.3rem; font-size:.6875rem; font-weight:600;
+    color:var(--accent); background:var(--accent-soft); padding:.2rem .5rem; border-radius:.4rem}
+  .step .who{display:inline-flex; align-items:center; gap:.3rem; font-size:.6875rem; font-weight:600;
+    color:var(--sub); margin-left:.35rem}
+
+  /* ===== WEEK ===== */
+  .day{background:var(--card); border-radius:var(--r-lg); padding:1rem 1.1rem; margin-bottom:.6rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .day .dh{display:flex; justify-content:space-between; align-items:center; margin-bottom:.4rem}
+  .day .dname{font-size:.9375rem; font-weight:700}
+  .day .dtag{font-size:.6875rem; font-weight:600; color:#fff; background:var(--accent);
+    padding:.15rem .55rem; border-radius:.4rem}
+  .day .dtag.who-client{background:var(--blue)}
+  .day .dtag.who-both{background:var(--pink)}
+  .day p{font-size:.8438rem; color:var(--sub); line-height:1.5}
+  .milestone{text-align:center; padding:1rem; margin:.3rem 0 1rem; color:var(--sub); font-size:.8125rem}
+  .milestone::before{content:"🏁 "}
+
+  .hrcard{background:var(--card); border-radius:var(--r-lg); padding:1.1rem 1.15rem; margin-top:1.2rem;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .hrcard .ht{font-size:.9375rem; font-weight:700; margin-bottom:.5rem; display:flex; align-items:center; gap:.4rem}
+  .hrcard p{font-size:.8438rem; color:var(--sub); line-height:1.55; margin-bottom:.5rem}
+  .hrcard p:last-child{margin-bottom:0}
+  .hrcard b{color:var(--ink); font-weight:600}
+
+  footer{text-align:center; font-size:.75rem; color:var(--sub); padding:2rem 1.5rem 0; line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="kicker">🧭 Внутрішній довідник</div>
+  <h1>VeroCleaning<br>Playbook</h1>
+  <p>Хто за що відповідає, на які документи спираємось і як виглядає перший тиждень нового формату роботи.</p>
+  <p style="margin-top:.75rem"><a href="router.html" style="color:var(--accent);font-weight:600;text-decoration:none;font-size:.875rem">← Куди звертатись (маршрут рішень)</a></p>
+</div>
+
+<div class="tabs">
+  <div class="tabrow">
+    <button class="on" data-tab="roles">👥 Ролі</button>
+    <button data-tab="docs">📚 Документи</button>
+    <button data-tab="flow">🔁 Процес</button>
+    <button data-tab="week">📅 Тиждень 1</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ===== ROLES ===== -->
+  <div class="panel on" id="roles">
+
+    <div class="rolecard">
+      <div class="rh"><div class="av">👨‍💻</div><div><div class="name">Олександр</div><div class="role">розробник</div></div></div>
+      <ul>
+        <li>Токени дизайн-системи — кольори, шрифти, відступи</li>
+        <li>Доступність — контраст, тап-цілі, читабельність</li>
+        <li>Копірайт і SEO/GEO-структура</li>
+        <li>Ціни та факти на сайті</li>
+        <li>Технічна здійсненність і кодування</li>
+      </ul>
+    </div>
+
+    <div class="rolecard client">
+      <div class="rh"><div class="av">🎨</div><div><div class="name">Толік</div><div class="role">замовник</div></div></div>
+      <ul>
+        <li>Порядок блоків на сторінці</li>
+        <li>Візуальні акценти, зображення, тон</li>
+        <li>Які секції показувати, які прибрати</li>
+        <li>Фінальний вибір кольору й шрифту — з перевірених варіантів</li>
+      </ul>
+    </div>
+
+    <div class="rule">
+      <div class="rt">⚖️ Одне правило, перевіряється числом, не смаком</div>
+      <p>Якщо блок є в затвердженій дизайн-системі — Толік ним вільно розпоряджається. Якщо це щось нове — це не «маленька правка», а заявка на новий цикл роботи.</p>
+    </div>
+
+  </div>
+
+  <!-- ===== DOCS ===== -->
+  <div class="panel" id="docs">
+
+    <div class="slabel">Дизайн і токени</div>
+    <div class="group">
+      <a class="row" href="../docs/design/design-system-v3.md">
+        <div class="ic">🎨</div>
+        <div class="body"><div class="t">Дизайн-скіл v3.0</div>
+          <div class="d">Кольори, типографіка, відступи. База — файл замовника, кожен токен перевірений на контраст WCAG AA.</div></div>
+        <span class="badge ready">відкрити</span>
+      </a>
+      <a class="row" href="design-check.html">
+        <div class="ic">🌈</div>
+        <div class="body"><div class="t">Перевірка нової ідеї</div>
+          <div class="d">Живий чек контрасту нового кольору проти зафіксованої палітри на всіх фонах сайту одночасно.</div></div>
+        <span class="badge ready">відкрити</span>
+      </a>
+    </div>
+
+    <div class="slabel">Структура сторінки</div>
+    <div class="group">
+      <a class="row" href="../docs/design/SPEC-home.md">
+        <div class="ic">📐</div>
+        <div class="body"><div class="t">SPEC — Home</div>
+          <div class="d">Заморожена структура блоків головної — що звідки копіюється, що видалено, що ще на підтвердженні.</div></div>
+        <span class="badge ready">відкрити</span>
+      </a>
+      <a class="row" href="../docs/content/content-contract-money-page.md">
+        <div class="ic">📝</div>
+        <div class="body"><div class="t">Контентний контракт</div>
+          <div class="d">Скільки елементів у кожному блоці, скільки символів. Виміряно на реальному еталоні, не вигадано.</div></div>
+        <span class="badge ready">відкрити</span>
+      </a>
+    </div>
+
+    <div class="slabel">Факти і дослідження</div>
+    <div class="group">
+      <a class="row" href="../docs/content/vero-facts.json">
+        <div class="ic">💰</div>
+        <div class="body"><div class="t">vero-facts.json</div>
+          <div class="d">Єдине джерело цін, формул і фактів. Усе інше на сайті звіряється з ним, не навпаки.</div></div>
+        <span class="badge ready">відкрити</span>
+      </a>
+      <div class="row">
+        <div class="ic">🔍</div>
+        <div class="body"><div class="t">SEO/GEO-аналіз</div>
+          <div class="d">Пошуковий попит, кластери запитів. Лежить у Project Knowledge, не в цьому репозиторії.</div></div>
+        <span class="badge wip">в проєкті</span>
+      </div>
+    </div>
+
+    <div class="slabel">Процес і порядок</div>
+    <div class="group">
+      <a class="row" href="charter.md">
+        <div class="ic">📜</div>
+        <div class="body"><div class="t">Хартія співпраці</div>
+          <div class="d">Хто за що відповідає, як подавати зміни, чому дзвінки «на хвилинку» більше не працюють.</div></div>
+        <span class="badge ready">відкрити</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ===== FLOW ===== -->
+  <div class="panel" id="flow">
+
+    <div class="slabel">Як народжується сторінка</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="stitle">Дослідження й контракт готові</div>
+        <div class="sdesc">SEO/GEO-аналіз і контентний контракт визначають структуру наперед — скільки блоків, скільки символів.</div>
+        <span class="based">📚 SEO-аналіз · контракт</span><span class="who">👨‍💻 Олександр</span>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="stitle">Скіл і SPEC → замовнику</div>
+        <div class="sdesc">Одним повідомленням: дизайн-скіл, контракт, референс. Не частинами.</div>
+        <span class="based">📐 SPEC · 🎨 скіл</span><span class="who">👨‍💻 Олександр</span>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="stitle">Макет у Claude Design</div>
+        <div class="sdesc">Толік компонує блоки, обирає акценти. Колір і шрифт — через інструменти перевірки, не «з голови».</div>
+        <span class="based">🌈 інструменти</span><span class="who">🎨 Толік</span>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div class="stitle">Чек-лист приймання</div>
+        <div class="sdesc">Токени, контраст, структура блоків — звірка з SPEC до того, як хтось торкнеться контенту.</div>
+        <span class="based">📜 хартія §4</span><span class="who">👨‍💻 Олександр</span>
+      </div>
+      <div class="step">
+        <div class="num">5</div>
+        <div class="stitle">Наповнення контентом</div>
+        <div class="sdesc">Реальний копірайт у межах лімітів контракту — макет уже не зміниться під новий текст.</div>
+        <span class="based">📝 контракт · 💰 факти</span><span class="who">👨‍💻 Олександр</span>
+      </div>
+      <div class="step">
+        <div class="num">6</div>
+        <div class="stitle">Кодування й деплой</div>
+        <div class="sdesc">Снапшот перед перезаписом, пріоритети сніпетів, перевірка на живих сторінках.</div>
+        <span class="based">🗂 аудит файлів</span><span class="who">👨‍💻 Олександр</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== WEEK 1 ===== -->
+  <div class="panel" id="week">
+
+    <div class="slabel">Перший тиждень нового формату</div>
+
+    <div class="day">
+      <div class="dh"><span class="dname">Пн · Дзвінок</span><span class="dtag who-both">разом</span></div>
+      <p>Узгоджуємо хартію співпраці. Демо обох інструментів перевірки — кольору й шрифту. Один пробний кейс: наступний макет проходить через них.</p>
+    </div>
+
+    <div class="day">
+      <div class="dh"><span class="dname">Вт–Ср · Перший макет</span><span class="dtag who-client">Толік</span></div>
+      <p>Головна сторінка — SPEC уже готовий. Колір і шрифт обираються через інструменти, не вільно.</p>
+    </div>
+
+    <div class="day">
+      <div class="dh"><span class="dname">Чт · Приймання</span><span class="dtag">Олександр</span></div>
+      <p>Чек-лист із хартії §4. Якщо не проходить — повертається з конкретним переліком, числами, не «не подобається».</p>
+    </div>
+
+    <div class="day">
+      <div class="dh"><span class="dname">Пт · Підтвердження</span><span class="dtag who-both">разом</span></div>
+      <p>Макет заморожено або йде на одну правку за формою запиту з хартії §3 — не усно.</p>
+    </div>
+
+    <div class="milestone">Кінець тижня — перший макет заморожений, старт наповнення контентом</div>
+
+    <div class="hrcard">
+      <div class="ht">💬 Як говоримо про правки</div>
+      <p><b>Побачив щось дивне в коді?</b> Напиши, що конкретно бачиш — не діагностуй по телефону. Одне припущення стало фактом, і так з'явився баг із двома CSS.</p>
+      <p><b>Не згодні щодо минулого випадку?</b> «Не з'ясовуємо, хто мав рацію — домовляємось, щоб такого більше не було, незалежно від причини.»</p>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>VeroCleaning · внутрішній робочий документ<br>оновлюється разом із проєктом</footer>
+
+<script>
+document.querySelectorAll('.tabrow button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabrow button').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById(btn.dataset.tab).classList.add('on');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>

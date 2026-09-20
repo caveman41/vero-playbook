@@ -1,0 +1,196 @@
+{
+  "_meta": {
+    "purpose": "Готові JSON-LD заготовки для всіх сторінок VeroCleaning. Копіюються у <head> як <script type=\"application/ld+json\">. Дані звірені з vero-facts.json v2.0 — не вигадувати числа заново.",
+    "version": "1.0",
+    "created": "2026-09-15",
+    "data_source": "vero-facts.json v2.0",
+    "validator": "Перед деплоєм кожної сторінки прогнати через search.google.com/test/rich-results",
+    "placeholder_convention": "Усе в {ФІГУРНИХ_ДУЖКАХ} замінюється перед вставкою. Якщо значення невідоме — блок не вставляється взагалі, а не заповнюється вигадкою."
+  },
+
+  "🔴_HARD_RULES": {
+    "no_aggregate_rating": "AggregateRating НЕ вставляти в жодному вигляді, поки немає реальних верифікованих відгуків. Це пряма заборона з vero-facts.json §trust_signals.forbidden. Фейковий рейтинг — підстава для ручних санкцій Google.",
+    "no_review_schema": "Review-розмітка теж заборонена з тієї ж причини.",
+    "price_must_match_visible": "Ціна в Offer має збігатися з видимою на сторінці до долара. Розбіжність = розмітка позначається як недостовірна.",
+    "one_localbusiness_per_site": "LocalBusiness вставляється ТІЛЬКИ на головній. На інших сторінках — Service + FAQPage + BreadcrumbList.",
+    "no_fake_hours": "openingHours тільки реальні: Mo-Su 10:00-17:00. Не писати 24/7."
+  },
+
+  "1_LocalBusiness": {
+    "_use_on": "ТІЛЬКИ головна сторінка (/)",
+    "_note": "HouseCleaningService — це підтип LocalBusiness зі schema.org, точніший за generic LocalBusiness.",
+    "template": {
+      "@context": "https://schema.org",
+      "@type": "HouseCleaningService",
+      "@id": "https://verocleaning.ca/#business",
+      "name": "VeroCleaning",
+      "url": "https://verocleaning.ca/",
+      "telephone": "+1-416-206-4408",
+      "email": "contact@verocleaning.ca",
+      "priceRange": "$$",
+      "currenciesAccepted": "CAD",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "10 Shallmar Blvd",
+        "addressLocality": "Toronto",
+        "addressRegion": "ON",
+        "addressCountry": "CA"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Toronto" },
+        { "@type": "City", "name": "Scarborough" },
+        { "@type": "City", "name": "North York" },
+        { "@type": "City", "name": "Etobicoke" },
+        { "@type": "City", "name": "Vaughan" },
+        { "@type": "City", "name": "Markham" },
+        { "@type": "City", "name": "Richmond Hill" },
+        { "@type": "City", "name": "Aurora" },
+        { "@type": "City", "name": "Newmarket" },
+        { "@type": "City", "name": "Stouffville" },
+        { "@type": "City", "name": "King" },
+        { "@type": "City", "name": "Mississauga" },
+        { "@type": "City", "name": "Brampton" },
+        { "@type": "City", "name": "Oakville" },
+        { "@type": "City", "name": "Burlington" },
+        { "@type": "City", "name": "Milton" },
+        { "@type": "City", "name": "Whitby" },
+        { "@type": "City", "name": "Pickering" },
+        { "@type": "City", "name": "Ajax" },
+        { "@type": "City", "name": "Bradford" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Residential cleaning services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Regular Cleaning" }, "price": "120", "priceCurrency": "CAD" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Deep Cleaning" }, "price": "180", "priceCurrency": "CAD" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Move-In / Move-Out Cleaning" }, "price": "216", "priceCurrency": "CAD" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Post-Renovation Cleaning" }, "price": "264", "priceCurrency": "CAD" }
+        ]
+      }
+    },
+    "_price_note": "Ціни = студія-кондо, 0 спалень / 1 ванна. Це та сама конфігурація, що в геро-калькуляторі головної. Джерело: vero-facts.json §canonical_table_studio_1bath."
+  },
+
+  "2_Service_with_Offer": {
+    "_use_on": "Кожна money-сторінка послуги (/deep-cleaning-toronto, /regular-cleaning-toronto тощо)",
+    "template": {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "{НАЗВА_ПОСЛУГИ}",
+      "name": "{НАЗВА_ПОСЛУГИ} in Toronto & the GTA",
+      "description": "{ОПИС_1_РЕЧЕННЯ_ЩО_ВХОДИТЬ}",
+      "provider": { "@id": "https://verocleaning.ca/#business" },
+      "areaServed": { "@type": "City", "name": "Toronto" },
+      "offers": {
+        "@type": "Offer",
+        "price": "{ЦІНА_ВІД}",
+        "priceCurrency": "CAD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://verocleaning.ca{URL_СТОРІНКИ}",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "{ЦІНА_ВІД}",
+          "priceCurrency": "CAD",
+          "valueAddedTaxIncluded": false,
+          "description": "Starting price for a studio condo. Final price depends on home size and number of rooms."
+        }
+      }
+    },
+    "_filled_values": {
+      "_note": "Готові значення для чотирьох основних типів. Ціна = студія-кондо.",
+      "deep": { "НАЗВА_ПОСЛУГИ": "Deep Cleaning", "ЦІНА_ВІД": "180", "URL_СТОРІНКИ": "/deep-cleaning-toronto" },
+      "regular": { "НАЗВА_ПОСЛУГИ": "Regular Cleaning", "ЦІНА_ВІД": "120", "URL_СТОРІНКИ": "/regular-cleaning-toronto" },
+      "moveinout": { "НАЗВА_ПОСЛУГИ": "Move-In / Move-Out Cleaning", "ЦІНА_ВІД": "216", "URL_СТОРІНКИ": "/move-out-cleaning-toronto" },
+      "postreno": { "НАЗВА_ПОСЛУГИ": "Post-Renovation Cleaning", "ЦІНА_ВІД": "264", "URL_СТОРІНКИ": "/post-renovation-cleaning" }
+    },
+    "⚠_commercial_exception": "Для /commercial-cleaning-toronto блок Offer НЕ вставляється — модель quote-based, фіксованої ціни немає. Лишається тільки Service без offers."
+  },
+
+  "3_FAQPage": {
+    "_use_on": "Будь-яка сторінка з блоком FAQ. Це найцінніший блок для AI-цитування.",
+    "_critical": "Текст питання і відповіді має ДОСЛІВНО збігатися з видимим на сторінці. Розмітка, що містить текст, якого немає на сторінці, — порушення правил Google.",
+    "template": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "{ПИТАННЯ_ДОСЛІВНО_ЯК_НА_СТОРІНЦІ}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{ВІДПОВІДЬ_ДОСЛІВНО_ЯК_НА_СТОРІНЦІ}"
+          }
+        }
+      ]
+    },
+    "_homepage_ready": {
+      "_note": "Вісім питань, які вже є на макеті головної. Вставляти як є.",
+      "questions": [
+        "How much does condo cleaning cost in Toronto?",
+        "How do you vet your cleaners?",
+        "How do I book a cleaning?",
+        "What if I'm not satisfied?",
+        "Do I need to provide supplies?",
+        "Do you also clean offices and commercial spaces?",
+        "Do you work after hours?",
+        "Which areas do you cover?"
+      ],
+      "⚠": "Відповіді взяти дослівно з index.html — не переписувати під розмітку."
+    },
+    "_best_practice": "Відповідь має містити конкретне число в першому реченні. Саме такі відповіді цитують ChatGPT і Google AI Overviews."
+  },
+
+  "4_BreadcrumbList": {
+    "_use_on": "Кожна сторінка, КРІМ головної",
+    "template": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://verocleaning.ca/" },
+        { "@type": "ListItem", "position": 2, "name": "{НАЗВА_СТОРІНКИ}", "item": "https://verocleaning.ca{URL_СТОРІНКИ}" }
+      ]
+    },
+    "_note": "Дворівнева структура — сайт плаский, хабів між головною і сторінками послуг немає."
+  },
+
+  "5_WebSite": {
+    "_use_on": "Головна сторінка, один раз",
+    "_note": "Дає Google зрозуміти назву сайту для брендового запиту.",
+    "template": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://verocleaning.ca/#website",
+      "name": "VeroCleaning",
+      "url": "https://verocleaning.ca/",
+      "publisher": { "@id": "https://verocleaning.ca/#business" },
+      "inLanguage": "en-CA"
+    }
+  },
+
+  "_page_type_matrix": {
+    "_note": "Який набір блоків на якій сторінці",
+    "головна (/)": ["1_LocalBusiness", "5_WebSite", "3_FAQPage"],
+    "money-сторінка послуги": ["2_Service_with_Offer", "3_FAQPage", "4_BreadcrumbList"],
+    "/commercial-cleaning-toronto": ["2_Service_with_Offer БЕЗ offers", "3_FAQPage", "4_BreadcrumbList"],
+    "/cleaning-prices-toronto (cost guide)": ["3_FAQPage", "4_BreadcrumbList", "опційно ItemList із цінами"],
+    "/cleaning-add-ons": ["4_BreadcrumbList", "опційно OfferCatalog зі SKU"]
+  },
+
+  "_deploy_checklist": [
+    "Усі {ПЛЕЙСХОЛДЕРИ} замінені на реальні значення",
+    "Ціна в Offer збігається з видимою на сторінці",
+    "Текст FAQ у розмітці дослівно збігається з видимим",
+    "AggregateRating і Review відсутні",
+    "Прогнано через search.google.com/test/rich-results — нуль помилок",
+    "@id посилання на #business збігається з тим, що на головній"
+  ]
+}

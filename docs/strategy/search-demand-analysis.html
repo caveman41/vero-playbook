@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeroCleaning — Аналіз пошукового попиту Google + AI · Toronto/GTA · 2026-07</title>
+<style>
+:root{--ink:#14211c;--green:#0fa968;--gdp:#0a7a4b;--mint:#e6f6ee;--sand:#f6f1e9;--line:#e7e0d4;--muted:#566a5f;--err:#e0574f;--amber:#b07d1e;--amber-bg:#fdf6e7;--blue:#2b5e9e;--blue-bg:#e7f0fb;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter','Segoe UI',sans-serif;background:var(--sand);color:var(--ink);font-size:15px;line-height:1.62;}
+h1,h2,h3,h4{font-family:'Nunito','Segoe UI',sans-serif;font-weight:800;letter-spacing:-.01em;}
+.wrap{display:flex;max-width:1280px;margin:0 auto;}
+nav{width:250px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 18px;border-right:1px solid var(--line);background:#fff;}
+nav .logo{font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;}
+nav .logo span{color:var(--green);}
+nav .ver{font-size:11px;color:var(--muted);margin-bottom:20px;}
+nav a{display:block;padding:7px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:500;margin-bottom:2px;}
+nav a:hover{background:var(--mint);color:var(--gdp);}
+nav .grp{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px 10px;}
+main{flex:1;padding:36px 44px 90px;min-width:0;}
+section{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 34px;margin-bottom:26px;}
+.num{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gdp);background:var(--mint);padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+h1{font-size:30px;margin-bottom:6px;}
+h2{font-size:22px;margin-bottom:12px;}
+h3{font-size:16.5px;margin:22px 0 8px;}
+p{margin-bottom:10px;color:#2a3a32;}
+.lead{font-size:16px;color:var(--muted);}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;}
+th{background:var(--ink);color:#fff;text-align:left;padding:9px 12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;}
+td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+tr:nth-child(even) td{background:#faf8f3;}
+code{background:var(--mint);color:var(--gdp);padding:1.5px 6px;border-radius:5px;font-size:12.5px;font-family:Consolas,monospace;}
+.callout{border-radius:12px;padding:14px 18px;margin:14px 0;font-size:14px;}
+.callout .cal-title{display:block;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;margin-bottom:4px;}
+.tip{background:var(--mint);border-left:4px solid var(--green);}
+.tip .cal-title{color:var(--gdp);}
+.warn{background:var(--amber-bg);border-left:4px solid var(--amber);}
+.warn .cal-title{color:var(--amber);}
+.critical{background:#fdecea;border-left:4px solid var(--err);}
+.critical .cal-title{color:var(--err);}
+.info{background:var(--blue-bg);border-left:4px solid var(--blue);}
+.info .cal-title{color:var(--blue);}
+.badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;vertical-align:middle;}
+.b-up{background:var(--green);color:#fff;}
+.b-down{background:var(--err);color:#fff;}
+.b-keep{background:#8d9b93;color:#fff;}
+.b-new{background:var(--blue);color:#fff;}
+.checklist{list-style:none;margin:10px 0;}
+.checklist li{padding:5px 0 5px 26px;position:relative;}
+.checklist li::before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:800;}
+.xlist{list-style:none;margin:10px 0;}
+.xlist li{padding:5px 0 5px 26px;position:relative;}
+.xlist li::before{content:"✕";position:absolute;left:2px;color:var(--err);font-weight:800;}
+.score{display:flex;align-items:center;gap:14px;background:#faf8f3;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;}
+.score .n{font-family:'Nunito',sans-serif;font-size:34px;font-weight:800;color:var(--gdp);flex-shrink:0;}
+.score p{margin:0;font-size:13px;}
+.src{font-size:11.5px;color:var(--muted);margin-top:3px;}
+.src a{color:var(--blue);}
+@media(max-width:900px){nav{display:none;}main{padding:20px 16px 80px;}section{padding:20px 18px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="logo">Vero<span>Cleaning</span></div>
+  <div class="ver">Аналіз попиту · 2026-07-18</div>
+  <div class="grp">Дослідження</div>
+  <a href="#google">1. Попит у Google</a>
+  <a href="#ai">2. Попит в AI-пошуку</a>
+  <a href="#market">3. Ринкові норми Toronto</a>
+  <div class="grp">Висновки</div>
+  <a href="#corrections">4. Корекції стратегії</a>
+  <a href="#offpage">5. Off-page GEO гап</a>
+  <a href="#content">6. Оцінка контенту замовника</a>
+  <a href="#sources">7. Джерела</a>
+</nav>
+<main>
+
+<h1>Аналіз пошукового попиту: Google + AI · клінінг Toronto/GTA</h1>
+<p class="lead" style="margin-bottom:26px;">Липень 2026. На базі конкурентної видачі Toronto, галузевих keyword-мап і досліджень AI-пошуку 2026 року. Результат: 4 корекції стратегії v2.1 → v2.2 + scorecard контенту замовника.</p>
+
+<section id="google">
+<span class="num">Розділ 1</span>
+<h2>Що реально питають у Google по Торонто</h2>
+
+<h3>1.1 Ціновий кластер — найбільший недооцінений попит</h3>
+<p>Видача переповнена свіжими cost-гайдами 2026 року, і вони ранжуються на позиціях, які мали б займати сервісні сторінки: «House cleaning cost in Toronto and GTA 2026» (Mrs. CleanMol), «House Cleaning Cost Toronto 2026» (Pro Tasker), «How Much Does Cleaning Service Cost in Toronto? 2026 Guide» (Tidyup). Ринкові діапазони, які вони публікують: regular 2-bed apartment $150–220, deep той самий юніт $300–450; погодинні ставки $45–70/клінер.</p>
+<div class="callout critical"><span class="cal-title">Головний інсайт дослідження</span>
+<p>Запити «how much does cleaning cost in Toronto» — це кластер, де <b>fixed-price модель Vero має нечесну перевагу</b>: ми єдині, хто може відповісти точним числом, а не діапазоном. При цьому в стратегії v2.1 нема жодної сторінки під цей інтент. Це і є сторінка, яку AI-системи цитують найохочіше (див. Розділ 2). Наш Deep від $180 виглядає надзвичайно конкурентно проти ринкових $300–450 за deep 2-bed — це треба показувати в лоб.</p></div>
+
+<h3>1.2 Термінологічний гап: «maid service»</h3>
+<p>Конкуренти системно ранжуються за «maid service toronto», «recurring maid services», «biweekly house cleaning» — термін «maid» повністю відсутній у нашому контурі. Галузева keyword-мапа прямо називає recurring-кластер найціннішим за LTV: одне бронювання biweekly-клієнта = місяці виручки. Це підтверджує і пріоритет frequency-селектора в калькуляторі.</p>
+
+<h3>1.3 Сезонність Move-Out — операційний факт</h3>
+<p>Hellamaid (сильний конкурент №1 у видачі) відкрито пише: оренда в Торонто масово обертається навколо 1 травня та 1 липня, весна — найважчий сезон, під ці тижні вони ставлять окремі move-out маршрути. Висновок: Move-Out сторінка має бути опублікована й «визріти» в індексі до березня-квітня.</p>
+
+<h3>1.4 Структура попиту підтверджує ядро W1–W2</h3>
+<p>Keyword-мапа галузі радить розводити по окремих сторінках рівно той набір, що у нас у ядрі: house cleaning, deep cleaning, move-out, recurring, commercial/office, Airbnb turnover, post-construction. Кондо-фокус підтверджений структурно: ~30% житлового фонду Торонто — кондо.</p>
+
+<h3>1.5 Window Cleaning — інтент нам не належить</h3>
+<p>Видача за «window cleaning toronto» — це exterior-спеціалісти з water-fed pole обладнанням і цінами $130–380+ за будинок (DT Cleaning: 454 відгуки, флет-рейт по фото). Наш продукт — interior windows $30/вікно як частина клінінгу. Конкурувати за головний запит цієї ніші без exterior-обладнання — програшна ставка.</p>
+</section>
+
+<section id="ai">
+<span class="num">Розділ 2</span>
+<h2>Попит в AI-пошуку — цифри 2026</h2>
+<table>
+<tr><th>Факт</th><th>Число</th><th>Що означає для Vero</th></tr>
+<tr><td>Споживачі, що використали AI для пошуку локального бізнесу за рік</td><td><b>45%</b> (було 6% у 2025; BrightLocal 2026)</td><td>GEO — вже не «майбутнє», а третій канал дискаверi після Google і Facebook</td></tr>
+<tr><td>Локальних бізнесів, які AI взагалі рекомендує</td><td><b>~1,2%</b></td><td>Вікно можливості: конкуренти-клінери Торонто ще майже не оптимізовані під AI</td></tr>
+<tr><td>Локальних запитів Google з AI Overview</td><td><b>~40%</b></td><td>Наші GEO-абзаци й FAQ-схеми працюють і всередині Google-видачі</td></tr>
+<tr><td>Користувачі ChatGPT, що шукають локальні послуги keyword-стилем</td><td><b>75%</b></td><td>Класична keyword-оптимізація сторінок працює і для AI — окремого «AI-контенту» не існує</td></tr>
+<tr><td>Цитувань AI з third-party джерел (відгуки, Reddit, best-of списки)</td><td><b>65%+</b></td><td><b>Критично:</b> он-пейдж GEO необхідний, але недостатній — див. Розділ 5</td></tr>
+<tr><td>Ядро AI-аудиторії</td><td>30–44 роки (64%)</td><td>Точно наша ЦА: зайняті професіонали й сім'ї, які делегують прибирання</td></tr>
+</table>
+<div class="callout tip"><span class="cal-title">Як AI відповідає на «скільки коштує клінінг у Торонто»</span>
+<p>AI-системи витягують конкретні числа з cost-гайдів (наш пошук сам це продемонстрував: AI-цитата підняла $150–220/$300–450 саме з CleanMol-гайда). Сторінка з точними фіксованими цінами + FAQ «How much does X cost in Toronto?» з числом у першому реченні — головний інструмент потрапляння у ці відповіді. Наш шаблон уже так побудований; корекція — додати повноцінний cost-guide (Розділ 4).</p></div>
+</section>
+
+<section id="market">
+<span class="num">Розділ 3</span>
+<h2>Ринкові норми: що generalist-клінери Торонто (не) роблять</h2>
+<p>Toronto Shine Cleaning (сильний гравець) прямо виключає зі свого скоупу: sofa/mattress/carpet cleaning, steam cleaning, полірування hardwood, зовнішні вікна, балкони/патіо. Тобто наші рішення «anchor-first» для specialty-послуг — це не компроміс, а <b>галузева норма</b>: генералісти лишають extraction-ніші спеціалістам і чесно про це пишуть.</p>
+<ul class="checklist">
+<li>Підтверджено ринком: Carpet/Upholstery/Mattress/Steam/Hardwood = ніші спеціалістів → наш anchor-first статус правильний</li>
+<li>Підтверджено: питання №1–3 до власника (Розділ 11a стратегії) — саме ті, що відділяють генераліста від спеціаліста</li>
+<li>Патерн чесності конкурентів («ось що ми НЕ робимо») — сильний trust-сигнал, вартий власного FAQ-питання на хабі</li>
+</ul>
+</section>
+
+<section id="corrections">
+<span class="num">Розділ 4</span>
+<h2>Корекції стратегії v2.1 → v2.2</h2>
+<table>
+<tr><th>#</th><th>Зміна</th><th>Статус</th><th>Обґрунтування</th></tr>
+<tr><td>1</td><td><b>Нова сторінка: Cleaning Cost Guide</b><br><code>/cleaning-prices-toronto</code> («House Cleaning Cost in Toronto 2026: Fixed Prices Explained»)</td><td><span class="badge b-new">ДОДАТИ · W2</span></td><td>Найбільший непокритий кластер попиту + головне джерело AI-цитат. Унікальна позиція: точні числа замість діапазонів, порівняння з ринковими $300–450 за deep. Оновлюється щороку (2026 → 2027 у title). Ядро стає 14 сторінок.</td></tr>
+<tr><td>2</td><td><b>Window Cleaning: сторінка → anchor-first</b><br><code>/cleaning-add-ons#windows</code>, реframe «interior window cleaning»</td><td><span class="badge b-down">ПОНИЗИТИ</span></td><td>Інтент «window cleaning toronto» належить exterior-спеціалістам ($130–380/будинок, water-fed pole). Наш $30/вікно interior — це add-on, не конкурент. Слот W2 звільняється під Cost Guide.</td></tr>
+<tr><td>3</td><td><b>Regular Cleaning: поглинає «maid service» кластер</b></td><td><span class="badge b-up">ПІДСИЛИТИ</span></td><td>H2 «Recurring maid service in Toronto», alternateName у схемі [Maid Service, Recurring House Cleaning], FAQ про weekly/biweekly/monthly + знижку recurring 15%. Найвищий LTV-кластер за галузевою keyword-мапою.</td></tr>
+<tr><td>4</td><td><b>Move-Out: сезонний дедлайн публікації</b></td><td><span class="badge b-up">ДЕДЛАЙН</span></td><td>Ринкові піки 1 травня / 1 липня. Сторінка має бути в індексі мінімум за 6–8 тижнів до піку → публікація в W1 (вже так) + контент-акценти: security deposit, landlord standards, «move-out routes» у високий сезон.</td></tr>
+<tr><td>5</td><td>Ядро й anchor-first решта — без змін</td><td><span class="badge b-keep">ПІДТВЕРДЖЕНО</span></td><td>Deep/Regular/Move-Out/Condo/House/Airbnb/Post-Reno/Office/Janitorial + хаби — все підтверджено попитом. Anchor-first для specialty — підтверджено ринковими нормами генералістів.</td></tr>
+</table>
+<p><b>Оновлена формула:</b> 14 ядро + 6 сильних (Kitchen займає W2-слот замість Window; Carpet лишається умовним за питанням №1) = <b>20 сторінок бази</b>. Модель «20 + сигнали» витримала перевірку даними — змінився склад, не логіка.</p>
+</section>
+
+<section id="offpage">
+<span class="num">Розділ 5</span>
+<h2>Off-page GEO — гап, який контент-стратегія сама не закриє</h2>
+<p>65%+ цитат в AI-відповідях — з third-party джерел: Google-відгуки, каталоги, Reddit/Quora, «best cleaning services in Toronto» списки. Для сильної AI-видимості рекомендований поріг — рейтинг 4.5+ і 30+ відгуків. Тобто навіть ідеальні 20 сторінок не гарантують потрапляння у відповідь «best cleaning company in Toronto», якщо Vero нема в консенсусі третіх джерел.</p>
+<ul class="checklist">
+<li><b>Google Business Profile</b> — повний, з services, фото, постами; це джерело №1 для Gemini/AI Overviews</li>
+<li><b>Відгуки:</b> системний збір після кожного клінінгу (QR/SMS-лінк) до порогу 30+ при 4.5+ — чесні, без стимулювання оцінки</li>
+<li><b>NAP-консистентність:</b> однакові назва/адреса/телефон у Yelp, Apple Maps, Foursquare, HomeStars, каталогах GTA</li>
+<li><b>Best-of присутність:</b> зафіксувати списки «best cleaning services Toronto» і працювати над потраплянням (аутрич, HomeStars/houzz-профілі)</li>
+</ul>
+<div class="callout warn"><span class="cal-title">Рамка чесності</span>
+<p>Це той самий принцип, що й з відгуками на сайті: жодних куплених згадок чи фейкових рейтингів. Реальні відгуки реальних клієнтів + коректні лістинги. Довго, але це єдиний шлях, який не обвалиться.</p></div>
+</section>
+
+<section id="content">
+<span class="num">Розділ 6</span>
+<h2>Оцінка контенту замовника: чи покриває він попит?</h2>
+<div class="score"><div class="n">55<span style="font-size:16px;color:var(--muted)">/100</span></div><p><b>Вердикт: придатна сировина, не готовий контент.</b> Чеклист-док — золото (використовується дослівно). Keyword-буліти — корисні для схем. Абзаци — потребують переписування (зроблено в макеті). Критичний провал — нульове покриття цінового інтенту.</p></div>
+
+<h3>Що контент покриває добре</h3>
+<ul class="checklist">
+<li><b>Чеклист «what's included»</b> — прямий збіг із топовим PAA-запитом «what is included in a deep cleaning»; конкретні дієві пункти, готові до featured snippet. Найсильніший актив пакета</li>
+<li><b>Синонімічне ядро</b> (deep house cleaning, intensive home cleaning, whole home reset) — закриває семантичну варіативність запитів; правильно лягло в alternateName/description схем</li>
+<li><b>Service Areas 18 міст</b> — повне GTA-покриття для areaServed</li>
+<li><b>Related Services</b> — коректний лінк-кластер (House, Move-In/Out, Post-Renov, Regular)</li>
+<li><b>Структурна логіка</b> «2 абзаци → чеклист → 2 абзаци → акордеон» — сумісна з нашим 12-блочним шаблоном без конфліктів</li>
+</ul>
+
+<h3>Що контент НЕ покриває (проти реального попиту)</h3>
+<ul class="xlist">
+<li><b>Ціна — нуль конкретики.</b> Розділ «Transparent Valuations» не містить жодного числа. Найбільший кластер запитів («how much does deep cleaning cost toronto») лишається без відповіді — а це саме те, що цитують AI-системи. Виправлено в макеті ($180/$216/$264 у FAQ №1 та GEO-абзаці)</li>
+<li><b>«Deep vs Regular»</b> — високоінтентний порівняльний запит не покритий взагалі. Закрито comparison-таблицею макета</li>
+<li><b>Recurring/maid service кластер</b> — слова weekly/biweekly/maid відсутні; для Regular-сторінки цей самий генератор дасть той самий гап — при замовленні контенту наступних сторінок внести в бриф</li>
+<li><b>Неперевірювані цифри</b> («99% частинок», «40 checkpoints», «6–8 годин») — прямий конфлікт із вимогою AI-систем до перевірюваної конкретики і з нашим правилом чесних trust-сигналів</li>
+<li><b>Стиль</b> — машинний keyword-stuffed тон («aggressively target», «dismantle built-up calcium»). Дослідження AI-видимості прямо радять plain language замість marketing-speak: цей стиль шкодить і людям, і GEO</li>
+<li><b>Локальна специфіка</b> — жодного торонтського сигналу в тексті (кондо-реалії, консьєрж-доступ, сезонність) — усе, що відрізняє local-сторінку від шаблонної</li>
+</ul>
+
+<div class="callout info"><span class="cal-title">Рекомендація по конвеєру контенту</span>
+<p>Формат замовника прийнятний як <b>сировинний стандарт</b>: чеклисти беремо 1:1, keyword-буліти — у схеми, абзаци — переписуємо за правилами макета (чесний тон + числа + локальність + лінки). У бриф генератору на наступні сторінки додати три обов'язкові вимоги: (1) точні ціни в тексті, (2) порівняльний блок із сусідньою послугою, (3) заборона на неперевірювані відсотки й цифри.</p></div>
+</section>
+
+<section id="sources">
+<span class="num">Розділ 7</span>
+<h2>Джерела</h2>
+<table>
+<tr><th>Дані</th><th>Джерело</th></tr>
+<tr><td>Ринкові ціни Toronto 2026 ($150–220 regular / $300–450 deep за 2-bed)</td><td class="src">mrscleanmol.ca — House cleaning cost in Toronto and GTA 2026</td></tr>
+<tr><td>Діапазон $120–340 за розміром; погодинні $45–70</td><td class="src">protasker.ca, tidyuphandycrew.ca — cost guides 2026</td></tr>
+<tr><td>Сезонність move-out (1 трав / 1 лип), spring peak</td><td class="src">hellamaid.ca — Toronto service page</td></tr>
+<tr><td>Норми виключень генералістів (no carpet/mattress/steam/hardwood polish)</td><td class="src">torontoshinecleaning.ca</td></tr>
+<tr><td>Exterior window ринок ($130–380+, water-fed pole)</td><td class="src">dtcleaning.ca — Window cleaning Toronto prices 2026</td></tr>
+<tr><td>Keyword-мапа клінінг-індустрії, цінність recurring-кластера</td><td class="src">diakachimba.agency — Cleaning SEO Keywords</td></tr>
+<tr><td>45% AI-adoption (з 6%), AI = 3-й канал, ядро 30–44 (BrightLocal 2026)</td><td class="src">cheers.tech — AI consumer adoption 2026</td></tr>
+<tr><td>1,2% бізнесів у AI-рекомендаціях; ~40% локальних запитів з AI Overview</td><td class="src">evolveamz.com — Local Business AI Search Playbook 2026</td></tr>
+<tr><td>75% keyword-стиль запитів у ChatGPT (54 учасники, 177 сесій)</td><td class="src">almcorp.com / Search Engine Land, січень 2026</td></tr>
+<tr><td>65%+ AI-цитат з third-party; поріг 4.5+/30+ відгуків</td><td class="src">onlinemarketinginct.com, squareko.com — AI/local SEO guides 2026</td></tr>
+</table>
+</section>
+
+</main>
+</div>
+</body>
+</html>
